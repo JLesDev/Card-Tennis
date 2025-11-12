@@ -304,12 +304,33 @@ function card_val_opp(card) {
     }
 }
 
+let points = 100;
 
+function pointTotal() {
+  let title = document.getElementById('placeholder2');
+  title.innerText = 'Pick a card to play - Points: ' + points;
+}
 
-async function run(city) {
+// function run_game(){
+//   pointTotal();
+//   let cBox = document.getElementById('content2');
+// //   let cBox2 = document.createElement('div');
+// //   cBox2.id = 'content2';
+// //   cBox.appendChild(cBox2);
+//   draw5(cBox);
+// }
+
+function run_game(){
+    pointTotal();
+    let cBox = document.getElementById('content2');
+    cBox.innerHTML = ''; // Clear previous cards
+    active = [];         // Reset active selection
+    draw5(cBox);
+}
+
+async function run() {
   randomQuote();
-  let cBox = document.getElementById('content2');
-  draw5(cBox);
+  run_game()
 }
 
 function removeData(chart) {
@@ -326,7 +347,7 @@ function playCard(card) {
 
     let card_opp_val = card_val_opp(card_opp);
 
-    let content3 = document.getElementById('content');
+    let content3 = document.getElementById('content2');
     content3.innerHTML = '';
     let text = document.createElement('p');
     text.innerText = 'You played the ' + card + '. Your opponent played the ' + card_opp_val + ' of ' + draw1(suit) + 's';
@@ -337,6 +358,13 @@ function playCard(card) {
     console.log(Number(card_val_user));
     console.log(card_opp_val);
 
+    if(Number(card_val_user) > 10){
+        points = points - 10;
+    }
+    else{
+        points = points - Number(card_val_user);
+    }
+
     if(Number(card_val_user) > card_opp_val){
         text2.innerText = 'You win!';
     }
@@ -344,8 +372,18 @@ function playCard(card) {
         text2.innerText = 'You lose!';
     }
 
+    let play_btn = document.createElement('button');
+    play_btn.innerText = 'Next round';
+    play_btn.classList.add('city-btn');
+    play_btn.id = 'next-round';
+
     content3.appendChild(text);
     content3.appendChild(text2); 
+    content3.appendChild(play_btn);
+
+    play_btn.addEventListener("click", function (e) {
+      run_game();
+    });
 }
 
 let active = [];
@@ -355,17 +393,9 @@ document.addEventListener("click", function (e) {
 });
 
 document.getElementById("play-card").addEventListener("click", function (e) {
-    console.log(active[active.length - 1]);
-    console.log(active[active.length - 1].innerText);
     let user_val = active[active.length - 1].innerText.split(" ");
     let card_val_user = card_val(user_val[0]);
     console.log(card_val_user);
-    // if(card_val_user == 'Card'){
-    //     let pop = document.createElement('span');
-    //     pop.classList.add('popuptext');
-    //     document.getElementById("play-card").appendChild(pop);
-    //     pop.classList.toggle('show');
-    // }
     playCard(active[active.length -1].innerText);
 });
 
@@ -383,6 +413,10 @@ document.getElementById("more").addEventListener("click", function (e) {
   runner(3);
   window.location.href = "more.html";
 });
+
+// document.getElementById("next-round").addEventListener("click", function (e) {
+//   run_game();
+// });
 
 function runner(city) {
   cityText(city);
