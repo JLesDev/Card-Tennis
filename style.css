@@ -153,6 +153,7 @@ html {
   flex-direction: column;  
   gap: 2rem;              
   padding: 1rem 2rem;
+  font-size: 0.1rem;
 
   margin: 0;
   color: #f5f5f5;
@@ -224,7 +225,7 @@ h1 {
 }
 
 p {
-  font-size: 3rem;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 1.6;
   margin-bottom: 0.7rem;
@@ -237,7 +238,7 @@ p {
   }
 
   p {
-    font-size: 1.6rem; /* bigger subtext */
+    font-size: 1.6rem; 
   }
 }
 
@@ -431,7 +432,7 @@ hr {
   z-index: -1;
 }
 
-@media (min-width: 1500px) {
+@media (min-width: 1400) {
   body {
     /* max-width: 1200px; */
     margin: 0 auto;
@@ -461,13 +462,12 @@ hr {
     padding: 0.8rem 2rem;
   }
 
-  #top-box {
-    /* flex-direction: row; */
+  /* #top-box {
     justify-content: space-between;
     padding: 2rem 2rem;
     min-height: 5vh;
     height: auto;
-  }
+  } */
 
   #content {
     flex-direction: row;
@@ -482,6 +482,7 @@ hr {
     justify-content: space-between;
     /* padding: 2rem 4rem; */
     padding: static;
+    font-size: 0.2rem;
     gap: 3rem;
   }
 
