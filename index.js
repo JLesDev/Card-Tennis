@@ -283,7 +283,7 @@ function card_val(card) {
         case "King":
             return 13
         case "Ace":
-            return 14
+            return 20
         default:
             return card
     }
@@ -304,11 +304,27 @@ function card_val_opp(card) {
     }
 }
 
-let points = 100;
+function win_game(did){
+    switch(did){
+        case 0:
+            alert("You lost!");
+            location.reload();
+        case 1:
+            alert("You won!");
+            location.reload();
+        default:
+            break;
+    }
+}
+
+
+let points = 60;
+let score = 0;
+let opp_score = 0;
 
 function pointTotal() {
     let title = document.getElementById('placeholder2');
-    title.innerText = 'Pick a card to play - Points: ' + points;
+    title.innerText = 'Points: ' + points + " | Score: " + score + " - " + opp_score;
 }
 
 // function run_game(){
@@ -320,11 +336,34 @@ function pointTotal() {
 //   draw5(cBox);
 // }
 
+// function run_game() {
+//     let play = document.createElement('button');
+//     play.innerText = 'Play';
+//     play.classList.add('city-btn');
+//     play.id = 'play-btn';
+//     pointTotal();
+//     let cBox = document.getElementById('content2');
+//     //     document.getElementById("play-card").style.visibility = "visible";
+//     cBox.innerHTML = ''; // Clear previous cards
+//     active = [];         // Reset active selection
+//     cBox.append(play);
+//     draw5(cBox);
+// }
+
 function run_game() {
-    pointTotal();
+    console.log(document.getElementById('content2'));
     let cBox = document.getElementById('content2');
-    cBox.innerHTML = ''; // Clear previous cards
-    active = [];         // Reset active selection
+    cBox.innerHTML = '';
+    active = [];         // reset active selection
+
+    let play = document.createElement('button');
+    play.innerText = 'Play';
+    play.classList.add('city-btn');
+    play.id = 'play-card';
+
+    cBox.append(play);   // add the button now that it's clear
+
+    pointTotal();
     draw5(cBox);
 }
 
@@ -358,8 +397,11 @@ function playCard(card) {
     console.log(Number(card_val_user));
     console.log(card_opp_val);
 
-    if (Number(card_val_user) > 10) {
-        points = points - 10;
+    if (Number(card_val_user) > 19) {
+        points = points - 20;
+    }
+    else if (Number(card_val_user) > 10) {
+        points = points - 15;
     }
     else {
         points = points - Number(card_val_user);
@@ -367,9 +409,29 @@ function playCard(card) {
 
     if (Number(card_val_user) > card_opp_val) {
         text2.innerText = 'You win!';
+        if(score == 0 || score == 15){
+            score = score + 15;
+        }
+        else if(score == 30){
+            score = score + 10;
+        }
+        else{
+            win_game(1);
+            return;
+        }
     }
     else {
         text2.innerText = 'You lose!';
+         if(opp_score == 0 || opp_score == 15){
+            opp_score = opp_score + 15;
+        }
+        else if(opp_score == 30){
+            opp_score = opp_score + 10;
+        }
+        else{
+            win_game(0);
+            return;
+        }
     }
 
     let play_btn = document.createElement('button');
@@ -393,6 +455,7 @@ document.addEventListener("click", function (e) {
 });
 
 document.getElementById("play-card").addEventListener("click", function (e) {
+    document.getElementById("play-card").style.visibility = "hidden";
     let user_val = active[active.length - 1].innerText.split(" ");
     let card_val_user = card_val(user_val[0]);
     console.log(card_val_user);
