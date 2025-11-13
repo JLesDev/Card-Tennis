@@ -357,14 +357,20 @@ function run_game() {
     active = [];         // reset active selection
 
     let play = document.createElement('button');
-    play.innerText = 'Play';
+    play.innerText = 'Shuffle (-5 points)';
     play.classList.add('city-btn');
-    play.id = 'play-card';
+    play.setAttribute('id','play-card');
 
     cBox.append(play);   // add the button now that it's clear
 
     pointTotal();
     draw5(cBox);
+
+    // document.getElementById("shuffle").addEventListener("click", function (e) {
+    //     points = points - 5;
+    //     let cBox = document.getElementById('content2');
+    //     draw5(cBox);
+    // });
 }
 
 async function run() {
@@ -471,6 +477,8 @@ document.getElementById("play-card").addEventListener("click", function (e) {
     console.log(card_val_user);
     playCard(active[active.length - 1].innerText);
 });
+
+
 
 document.getElementById("melb").addEventListener("click", function (e) {
     runner(0);
