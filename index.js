@@ -267,11 +267,19 @@ function run_game() {
     shuffle.setAttribute('id', 'shuffle')
     shuffle.classList.add('play-btn')
 
+    let sell = document.createElement('button')
+    sell.innerText = 'Sell'
+    sell.setAttribute('id', 'sell')
+    sell.classList.add('play-btn')
+
+
     pointTotal()
     draw5(cBox)
 
     content.append(play)
+    content.append(sell)
     content.append(shuffle)
+    
 
     document.getElementById('play-card').addEventListener('click', function (e) {
         document.getElementById('play-card').style.visibility = 'hidden'
@@ -286,6 +294,10 @@ function run_game() {
         points = points - 5;
         pointTotal();
         draw5(cBox);
+    })
+
+    document.getElementById('sell').addEventListener('click', function (e) {
+        sellCard(active[active.length - 1])
     })
 }
 
@@ -382,6 +394,40 @@ function playCard(card) {
         console.log('click')
         run_game()
     })
+}
+
+
+function sellCard(cardy) {
+    let content3 = document.getElementById('content')
+
+    let card = active[active.length - 1].innerText;
+
+    let user_val = card.split(' ')
+    let card_val_user = card_val(user_val[0])
+    let text2 = document.createElement('p')
+
+    if (card == null) {
+        alert('Not a valid option...')
+    }
+
+    console.log(Number(card_val_user))
+
+    if (Number(card_val_user) > 19) {
+        points = points + 5
+    } else if (Number(card_val_user) > 10) {
+        points = points + 3
+    } else {
+        points = points + 0
+    }
+
+    if (points < 1) {
+        win_game(0)
+        return
+    }
+
+    pointTotal();
+    cardy.remove();
+
 }
 
 let active = []
