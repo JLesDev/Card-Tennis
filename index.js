@@ -232,26 +232,35 @@ function win_game (did) {
 
   let play_again = document.createElement('button')
   play_again.innerText = 'Play again'
-  play_again.setAttribute('id', 'play-card');
-  play_again.classList.add('city-btn');
+  play_again.setAttribute('id', 'play-card')
+  play_again.classList.add('city-btn')
 
+  const newButton = document.createElement('button')
+  newButton.classList.add('city-btn')
+  newButton.setAttribute('id', 'copyButton')
+  newButton.innerHTML = 'Copy Results'
 
   switch (did) {
     case 0:
       text.innerText = 'You lost but keep trying!'
       content.append(text)
+      document.getElementById('content').appendChild(newButton)
       content.append(play_again)
-    //   location.reload()
     case 1:
       text.innerText = 'You won Card Tennis!'
       content.append(text)
+      document.getElementById('content').appendChild(newButton)
       content.append(play_again)
-    //   location.reload()
     default:
       text.innerText = 'You lost but keep trying!'
       content.append(text)
+      document.getElementById('content').appendChild(newButton)
       content.append(play_again)
   }
+  newButton.addEventListener('click', () => {
+    console.log(did);
+    copyResults(did)
+  })
   document.getElementById('play-card').addEventListener('click', function (e) {
     location.reload()
   })
@@ -457,3 +466,26 @@ document.addEventListener('mousedown', e => {
 
 run(1)
 window.run = run
+
+function copyResults (did) {
+  switch (did) {
+    case 0:
+      navigator.clipboard.writeText(
+        'I could not beat Card Tennis, can you? | JLesDev.github.io/Card-Tennis'
+      )
+    case 1:
+      navigator.clipboard.writeText(
+        'I beat Card Tennis, but can you? | JLesDev.github.io/Card-Tennis'
+      )
+    default:
+      navigator.clipboard.writeText(
+        'I beat Card Tennis, but can you? | JLesDev.github.io/Card-Tennis'
+      )
+  }
+
+  let copied = document.getElementById('copyButton')
+  copied.style.visibility = 'visible'
+  copied.innerHTML = 'Copy Results'
+  document.getElementById('copyButton').innerHTML = 'Copied results!'
+  copied.style.color = 'rgba(71, 153, 103, 1)'
+}

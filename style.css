@@ -665,6 +665,7 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
 }
 
 .city-btn {
+  margin: 0rem 0rem 1rem;
   padding: 0.6rem 1.2rem;
   font-size: 0.8rem;
   font-weight: 600;
