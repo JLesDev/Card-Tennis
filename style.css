@@ -673,6 +673,7 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
   border-radius: 999px;
   cursor: pointer;
   pointer-events: auto;
+  touch-action: manipulation;
 
   background: rgba(255, 255, 255, 0.08);
   color: #f5f5f5;
