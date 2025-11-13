@@ -206,7 +206,7 @@ function card_val (card) {
   }
 }
 
-function card_val_opp (card) {
+function card_val_opp(card) {
   switch (card) {
     case 10:
       return 'Jack'
@@ -258,7 +258,7 @@ function win_game (did) {
       content.append(play_again)
   }
   newButton.addEventListener('click', () => {
-    console.log(did);
+    console.log(did)
     copyResults(did)
   })
   document.getElementById('play-card').addEventListener('click', function (e) {
@@ -396,7 +396,7 @@ function playCard (card) {
     return
   }
 
-  if (Number(card_val_user) > card_opp_val && points > 1) {
+  if (Number(card_val_user) > card_opp && points > 1) {
     text2.innerText = 'You win!'
     if (score == 0 || score == 15) {
       score = score + 15
@@ -455,6 +455,16 @@ document.getElementById('more').addEventListener('click', function (e) {
 })
 
 document.addEventListener('mousedown', e => {
+  if (
+    !e.target.closest(
+      '.card-red, .card-black, button, .keyboard-button, .city-btn'
+    )
+  ) {
+    e.preventDefault()
+  }
+})
+
+document.addEventListener('pointerdown', e => {
   if (
     !e.target.closest(
       '.card-red, .card-black, button, .keyboard-button, .city-btn'
