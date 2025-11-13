@@ -316,7 +316,7 @@ function removeData(chart) {
 
 function playCard(card) {
     let suit = Math.floor(Math.random() * 4)
-    let card_opp = Math.floor(Math.random() * 14)
+    let card_opp = Math.max(2,Math.floor(Math.random() * 14))
 
     let card_opp_val = card_val_opp(card_opp)
 
