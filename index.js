@@ -394,6 +394,11 @@ function playCard(card) {
     let card_val_user = card_val(user_val[0]);
     let text2 = document.createElement('p');
 
+    if(card == null){
+        alert("Not a valid option...");
+        // run_game();
+    }
+
     console.log(Number(card_val_user));
     console.log(card_opp_val);
 
