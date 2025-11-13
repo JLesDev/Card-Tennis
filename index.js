@@ -412,7 +412,7 @@ function playCard(card) {
         return;
     }
 
-    if (Number(card_val_user) > card_opp_val) {
+    if (Number(card_val_user) > card_opp_val && points > 1) {
         text2.innerText = 'You win!';
         if(score == 0 || score == 15){
             score = score + 15;
