@@ -273,12 +273,19 @@ function run_game() {
     sell.classList.add('play-btn')
 
 
+    let shop = document.createElement('button')
+    shop.innerText = 'Shop'
+    shop.setAttribute('id', 'shop')
+    shop.classList.add('play-btn')
+
+
     pointTotal()
     draw5(cBox)
 
     content.append(play)
     content.append(sell)
     content.append(shuffle)
+    content.append(shop)
     
 
     document.getElementById('play-card').addEventListener('click', function (e) {
