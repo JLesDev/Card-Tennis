@@ -272,11 +272,11 @@ function run_game() {
     sell.setAttribute('id', 'sell')
     sell.classList.add('play-btn')
 
-
-    let shop = document.createElement('button')
-    shop.innerText = 'Shop'
-    shop.setAttribute('id', 'shop')
-    shop.classList.add('play-btn')
+    // commented reason: to be added later
+    // let shop = document.createElement('button')
+    // shop.innerText = 'Shop'
+    // shop.setAttribute('id', 'shop')
+    // shop.classList.add('play-btn')
 
 
     pointTotal()
@@ -285,15 +285,17 @@ function run_game() {
     content.append(play)
     content.append(sell)
     content.append(shuffle)
-    content.append(shop)
+    // content.append(shop)
     
 
     document.getElementById('play-card').addEventListener('click', function (e) {
-        document.getElementById('play-card').style.visibility = 'hidden'
-        let user_val = active[active.length - 1].innerText.split(' ')
-        let card_val_user = card_val(user_val[0])
-        console.log(card_val_user)
-        playCard(active[active.length - 1].innerText)
+        if(active.length != 0){
+            document.getElementById('play-card').style.visibility = 'hidden'
+            let user_val = active[active.length - 1].innerText.split(' ')
+            let card_val_user = card_val(user_val[0])
+            console.log(card_val_user)
+            playCard(active[active.length - 1].innerText)
+        }
     })
 
     document.getElementById('shuffle').addEventListener('click', function (e) {
@@ -440,7 +442,9 @@ function sellCard(cardy) {
 let active = []
 
 document.addEventListener('click', function (e) {
-    active.push(document.activeElement)
+    if((document.activeElement).classList.contains('card-black') == true || (document.activeElement).classList.contains('card-red') == true){
+        active.push(document.activeElement)
+    }
 })
 
 document.getElementById('melb').addEventListener('click', function (e) {
