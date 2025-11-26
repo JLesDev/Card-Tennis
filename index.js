@@ -111,7 +111,6 @@ function displayDeck(deck) {
     })
     document.body.appendChild(deckElement)
 }
-// displayDeck(myDeck);
 
 function draw5(cBox) {
     for (let i = 0; i < 5; i++) {
