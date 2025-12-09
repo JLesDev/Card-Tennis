@@ -41,10 +41,14 @@ html {
   content: "";
   position: absolute;
   inset: 0;
+  /* background: radial-gradient(circle at 20% 30%, #92B3C9, transparent 40%),
+              radial-gradient(circle at 80% 20%, #C6D1D1, transparent 40%),
+              radial-gradient(circle at 30% 70%, #e69a92, transparent 40%),
+              radial-gradient(circle at 70% 80%, #becf9b, transparent 40%); */
   background: radial-gradient(circle at 20% 30%, #3f4142, transparent 40%),
-    radial-gradient(circle at 80% 20%, #b9b9b9, transparent 40%),
+    radial-gradient(circle at 80% 20%, #8a8a8a, transparent 40%),
     radial-gradient(circle at 30% 70%, #302d2d, transparent 40%),
-    radial-gradient(circle at 70% 80%, #272727, transparent 40%);
+    radial-gradient(circle at 70% 80%, #bdbdbd, transparent 40%);
   filter: blur(80px);
   z-index: -1000;
 }
@@ -102,9 +106,9 @@ html {
   position: absolute;
   inset: 0;
   background: radial-gradient(circle at 20% 30%, #3f4142, transparent 40%),
-    radial-gradient(circle at 80% 20%, #494949, transparent 40%),
+    radial-gradient(circle at 80% 20%, #bea266, transparent 40%),
     radial-gradient(circle at 30% 70%, #302d2d, transparent 40%),
-    radial-gradient(circle at 70% 80%, #9c9c9c, transparent 40%);
+    radial-gradient(circle at 70% 80%, #cab95a, transparent 40%);
   filter: blur(80px);
   z-index: -1;
 }
@@ -129,10 +133,14 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
+  /* background: radial-gradient(circle at 20% 30%, #537083, transparent 40%),
+              radial-gradient(circle at 80% 20%, #566464, transparent 40%),
+              radial-gradient(circle at 30% 70%, #e08278, transparent 40%),
+              radial-gradient(circle at 70% 80%, #49572d, transparent 40%); */
   background: radial-gradient(circle at 20% 30%, #3f4142, transparent 60%),
-    radial-gradient(circle at 100% 20%, #777777, transparent 60%),
-    radial-gradient(circle at 30% 70%, #1d1d1d, transparent 60%),
-    radial-gradient(circle at 70% 80%, #1b1b1b, transparent 60%);
+    radial-gradient(circle at 100% 20%, #6b131b, transparent 60%),
+    radial-gradient(circle at 30% 70%, #302d2d, transparent 60%),
+    radial-gradient(circle at 70% 80%, #791435, transparent 60%);
   /* rgba(0, 0, 0, 0.1); */
   filter: blur(80px);
   z-index: -1;
@@ -541,8 +549,9 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
 
 .card-black:hover,
 .card-black:focus {
+  /* background: rgba(131, 22, 89, 0.2); */
   background:
-    radial-gradient(circle at 20% 30%, rgba(107, 107, 107, 0.929), transparent 60%),
+    radial-gradient(circle at 20% 30%, rgba(198, 180, 180, 0.929), transparent 60%),
     radial-gradient(circle at 80% 20%, rgba(212, 212, 212, 0.911), transparent 60%),
     radial-gradient(circle at 30% 70%, rgba(115, 115, 115, 0.829), transparent 60%),
     radial-gradient(circle at 70% 80%, rgba(89, 84, 84, 0.781), transparent 60%);
@@ -699,19 +708,12 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
 
 .play-btn:hover,
 .play-btn:focus {
-  background: rgba(168, 161, 156, 0.788);
+  background: rgba(236, 213, 194, 0.788);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(165, 162, 160, 0.788);
+  box-shadow: 0 6px 20px rgba(236, 213, 194, 0.788);
 }
 
 .play-btn:active {
   transform: scale(0.95);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-}
-
-#button-row {
-  display: flex;
-  flex-direction: row;  
-  gap: 8px;            
-  align-items: center;
 }

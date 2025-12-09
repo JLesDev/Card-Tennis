@@ -191,6 +191,11 @@ function card_val_opp(card) {
 function win_game(did) {
     let content = document.getElementById('content')
     content.innerHTML = ''
+    
+    let rutton = document.createElement('div');
+    rutton.setAttribute('id', 'rutton');
+    content.append(rutton);
+
 
     let text = document.createElement('p')
 
@@ -254,7 +259,12 @@ function run_game() {
 
     let content = document.getElementById('content')
     content.innerHTML = ''
+    
+    let rutton = document.createElement('div');
+    rutton.setAttribute('id', 'rutton');
+    content.append(rutton);
     content.append(cBox)
+    let buttonRow = document.getElementById('rutton')
 
     let play = document.createElement('button')
     play.innerText = 'Play'
@@ -281,12 +291,11 @@ function run_game() {
     pointTotal()
     draw5(cBox)
 
-    content.append(play)
-    content.append(sell)
-    content.append(shuffle)
+    buttonRow.append(play)
+    buttonRow.append(sell)
+    buttonRow.append(shuffle)
     // content.append(shop)
     
-
     document.getElementById('play-card').addEventListener('click', function (e) {
         if(active.length != 0){
             document.getElementById('play-card').style.visibility = 'hidden'
