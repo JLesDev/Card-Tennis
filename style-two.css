@@ -46,9 +46,9 @@ html {
               radial-gradient(circle at 30% 70%, #e69a92, transparent 40%),
               radial-gradient(circle at 70% 80%, #becf9b, transparent 40%); */
   background: radial-gradient(circle at 20% 30%, #3f4142, transparent 40%),
-    radial-gradient(circle at 80% 20%, #8a8a8a, transparent 40%),
+    radial-gradient(circle at 80% 20%, #bea266, transparent 40%),
     radial-gradient(circle at 30% 70%, #302d2d, transparent 40%),
-    radial-gradient(circle at 70% 80%, #bdbdbd, transparent 40%);
+    radial-gradient(circle at 70% 80%, #cab95a, transparent 40%);
   filter: blur(80px);
   z-index: -1000;
 }

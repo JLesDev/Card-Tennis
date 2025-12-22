@@ -715,3 +715,110 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
   gap: 8px;            
   align-items: center;
 }
+
+@media (max-width: 1100px) {
+
+  html {
+    font-size: 15px;
+  }
+
+  body {
+    pointer-events: auto; 
+  }
+
+
+  #top-box {
+    padding: 1rem;
+    min-height: auto;
+  }
+
+  /* #bot-box {
+    font-size: 3.9rem;
+  } */
+
+  #more-box {
+    position: relative;
+    min-height: auto;
+    padding: 1.2rem;
+  }
+
+  #content,
+  #content2 {
+    padding: 0.8rem;
+    line-height: normal;
+  }
+
+  .row {
+    flex-wrap: wrap;
+  }
+
+  .city-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+
+  h1 {
+    font-size: 5.1rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  #quote {
+    font-size: 0.9rem;
+  }
+
+
+  .card-red,
+  .card-black {
+    width: 100%;
+    max-width: 320px;
+    height: 14.5rem;
+    font-size: 4.2rem;
+  }
+
+
+  .city-btn,
+  .play-btn {
+    font-size: 3.9rem;
+    padding: 0.55rem 1rem;
+  }
+
+  #button-row {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* ---- Keyboard ---- */
+
+  .keyboard-button {
+    font-size: 0.85rem;
+    height: 2.6rem;
+    min-width: 2.2rem;
+  }
+
+  #keyboard-cont div {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+
+  .letter-box {
+    width: 3.2rem;
+    height: 3.2rem;
+    font-size: 1.8rem;
+  }
+
+
+  body::before,
+  #big-box::before,
+  #bot-box::before,
+  #more-box::before {
+    filter: blur(40px);
+  }
+}
