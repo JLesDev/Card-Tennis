@@ -124,20 +124,26 @@ function draw5(cBox) {
         console.log(myCard2)
         let cardString = `${myCard2.value} of ${myCard2.suit}`
         card1.textContent = cardString
-        switch (myCard2.suit) {
-            case 'Hearts' || 'Diamonds':
-                card1.classList.add('card-red')
-                break
-            case 'Spades' || 'Clubs':
-                card1.classList.add('card-black')
-                break
-            case 'Clubs':
-                card1.classList.add('card-black')
-                break
-            default:
-                card1.classList.add('card-red')
-                break
+        // switch (myCard2.suit) {
+        //     case 'Hearts' || 'Diamonds':
+        //         card1.classList.add('card-red')
+        //         break
+        //     case 'Spades' || 'Clubs':
+        //         card1.classList.add('card-black')
+        //         break
+        //     case 'Clubs':
+        //         card1.classList.add('card-black')
+        //         break
+        //     default:
+        //         card1.classList.add('card-red')
+        //         break
+        // }
+        if (myCard2.suit === 'Hearts' || myCard2.suit === 'Diamonds') {
+            card1.classList.add('card-red')
+        } else {
+            card1.classList.add('card-black')
         }
+
         console.log(myCard2.suit + card1.className)
         cBox.appendChild(card1)
     }
@@ -191,7 +197,7 @@ function card_val_opp(card) {
 function win_game(did) {
     let content = document.getElementById('content')
     content.innerHTML = ''
-    
+
     let rutton = document.createElement('div');
     rutton.setAttribute('id', 'rutton');
     content.append(rutton);
@@ -259,7 +265,7 @@ function run_game() {
 
     let content = document.getElementById('content')
     content.innerHTML = ''
-    
+
     let rutton = document.createElement('div');
     rutton.setAttribute('id', 'rutton');
     content.append(rutton);
@@ -295,9 +301,9 @@ function run_game() {
     buttonRow.append(sell)
     buttonRow.append(shuffle)
     // content.append(shop)
-    
+
     document.getElementById('play-card').addEventListener('click', function (e) {
-        if(active.length != 0){
+        if (active.length != 0) {
             document.getElementById('play-card').style.visibility = 'hidden'
             let user_val = active[active.length - 1].innerText.split(' ')
             let card_val_user = card_val(user_val[0])
@@ -333,7 +339,7 @@ function removeData(chart) {
 
 function playCard(card) {
     let suit = Math.floor(Math.random() * 4)
-    let card_opp = Math.max(2,Math.floor(Math.random() * 14))
+    let card_opp = Math.max(2, Math.floor(Math.random() * 14))
 
     let card_opp_val = card_val_opp(card_opp)
 
@@ -383,7 +389,7 @@ function playCard(card) {
             win_game(1)
             return
         }
-    } else if (Number(card_val_user) == card_opp && points > -1){
+    } else if (Number(card_val_user) == card_opp && points > -1) {
         text2.innerText = 'Tie. Receive 5 points back.'
         points = points + 5;
     } else {
@@ -449,11 +455,20 @@ function sellCard(cardy) {
 
 let active = []
 
+// document.addEventListener('click', function (e) {
+//     if((document.activeElement).classList.contains('card-black') == true || (document.activeElement).classList.contains('card-red') == true){
+//         active.push(document.activeElement)
+//     }
+// })
+
 document.addEventListener('click', function (e) {
-    if((document.activeElement).classList.contains('card-black') == true || (document.activeElement).classList.contains('card-red') == true){
-        active.push(document.activeElement)
-    }
+    const card = e.target.closest('.card-red, .card-black')
+    if (!card) return
+
+    active = [card] // only one active card
+    console.log('Selected:', card.innerText)
 })
+
 
 document.getElementById('melb').addEventListener('click', function (e) {
     runner(0)
