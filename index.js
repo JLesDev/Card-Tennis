@@ -120,31 +120,15 @@ function draw5(cBox) {
         shuffleDeck(myDeck2)
         const myCard2 = drawCard(myDeck2)
         myCard2.id = `${myCard2.value} / ${myCard2.suit}`
-        console.log(myCard2.id)
-        console.log(myCard2)
         let cardString = `${myCard2.value} of ${myCard2.suit}`
         card1.textContent = cardString
-        // switch (myCard2.suit) {
-        //     case 'Hearts' || 'Diamonds':
-        //         card1.classList.add('card-red')
-        //         break
-        //     case 'Spades' || 'Clubs':
-        //         card1.classList.add('card-black')
-        //         break
-        //     case 'Clubs':
-        //         card1.classList.add('card-black')
-        //         break
-        //     default:
-        //         card1.classList.add('card-red')
-        //         break
-        // }
+
         if (myCard2.suit === 'Hearts' || myCard2.suit === 'Diamonds') {
             card1.classList.add('card-red')
         } else {
             card1.classList.add('card-black')
         }
 
-        console.log(myCard2.suit + card1.className)
         cBox.appendChild(card1)
     }
 }
@@ -236,7 +220,6 @@ function win_game(did) {
             content.append(play_again)
     }
     newButton.addEventListener('click', () => {
-        console.log(did)
         copyResults(did)
     })
     document.getElementById('play-card').addEventListener('click', function (e) {
@@ -307,7 +290,6 @@ function run_game() {
             document.getElementById('play-card').style.visibility = 'hidden'
             let user_val = active[active.length - 1].innerText.split(' ')
             let card_val_user = card_val(user_val[0])
-            console.log(card_val_user)
             playCard(active[active.length - 1].innerText)
         }
     })
@@ -363,9 +345,6 @@ function playCard(card) {
         alert('Not a valid option...')
     }
 
-    console.log(Number(card_val_user))
-    console.log(card_opp)
-
     if (Number(card_val_user) > 19) {
         points = points - 20
     } else if (Number(card_val_user) > 10) {
@@ -414,7 +393,6 @@ function playCard(card) {
     content3.appendChild(play_btn)
 
     play_btn.addEventListener('click', function (e) {
-        console.log('click')
         run_game()
     })
 }
@@ -432,8 +410,6 @@ function sellCard(cardy) {
     if (card == null) {
         alert('Not a valid option...')
     }
-
-    console.log(Number(card_val_user))
 
     if (Number(card_val_user) > 19) {
         points = points + 5
@@ -465,8 +441,7 @@ document.addEventListener('click', function (e) {
     const card = e.target.closest('.card-red, .card-black')
     if (!card) return
 
-    active = [card] // only one active card
-    console.log('Selected:', card.innerText)
+    active = [card]
 })
 
 
@@ -485,25 +460,25 @@ document.getElementById('more').addEventListener('click', function (e) {
     window.location.href = 'more.html'
 })
 
-document.addEventListener('mousedown', e => {
-    if (
-        !e.target.closest(
-            '.card-red, .card-black, button, .keyboard-button, .city-btn'
-        )
-    ) {
-        e.preventDefault()
-    }
-})
+// document.addEventListener('mousedown', e => {
+//     if (
+//         !e.target.closest(
+//             '.card-red, .card-black, button, .keyboard-button, .city-btn'
+//         )
+//     ) {
+//         e.preventDefault()
+//     }
+// })
 
-document.addEventListener('pointerdown', e => {
-    if (
-        !e.target.closest(
-            '.card-red, .card-black, button, .keyboard-button, .city-btn'
-        )
-    ) {
-        e.preventDefault()
-    }
-})
+// document.addEventListener('pointerdown', e => {
+//     if (
+//         !e.target.closest(
+//             '.card-red, .card-black, button, .keyboard-button, .city-btn'
+//         )
+//     ) {
+//         e.preventDefault()
+//     }
+// })
 
 run(1)
 window.run = run
