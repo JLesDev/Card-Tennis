@@ -254,7 +254,7 @@ function pointTotal() {
     }
     let title = document.getElementById('placeholder2')
     title.innerText =
-        'Cash: ' + points + ' | Score: ' + score + ' - ' + opp_score
+        'Cash: $' + points + ' | Score: ' + score + ' - ' + opp_score
 }
 
 function run_game() {
