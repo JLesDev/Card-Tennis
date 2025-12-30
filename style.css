@@ -196,7 +196,8 @@ p {
 
 a {
   text-decoration: none;
-  color: var(--accent);
+  /* color: var(--accent); */
+  color: inherit;
 }
 
 hr {
@@ -718,6 +719,14 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
 
 @media (max-width: 1100px) {
 
+  #bot-box {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2rem 4rem;
+    font-size: 2rem;
+    gap: 3rem;
+  }
+
   html {
     font-size: 15px;
   }
@@ -793,8 +802,6 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
     flex-wrap: wrap;
     justify-content: center;
   }
-
-  /* ---- Keyboard ---- */
 
   .keyboard-button {
     font-size: 0.85rem;
