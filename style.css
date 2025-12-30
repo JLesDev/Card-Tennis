@@ -7,6 +7,10 @@
   --accent: #7aa2ff;
 }
 
+body, p, span, div {
+  color: var(--fg-color);
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #121213;
