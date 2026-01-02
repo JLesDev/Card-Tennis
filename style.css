@@ -407,7 +407,7 @@ hr {
     flex-direction: row;
     justify-content: space-between;
     padding: 2rem 4rem;
-    font-size: 1rem;
+    font-size: 0.2rem;
     gap: 3rem;
   }
 
@@ -711,7 +711,7 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
   }
 
   html {
-    font-size: 15px;
+    font-size: 2rem;
   }
 
   body {
@@ -723,10 +723,6 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
     padding: 1rem;
     min-height: auto;
   }
-
-  /* #bot-box {
-    font-size: 3.9rem;
-  } */
 
   #more-box {
     position: relative;
@@ -765,7 +761,6 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
     font-size: 0.9rem;
   }
 
-
   .card-red,
   .card-black {
     width: 100%;
@@ -773,7 +768,6 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
     height: 14.5rem;
     font-size: 4.2rem;
   }
-
 
   .city-btn,
   .play-btn {
