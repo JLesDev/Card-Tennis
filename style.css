@@ -629,7 +629,7 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
   align-items: center;
   z-index: 1001;
   cursor: context-menu;
-  line-height: 0.2rem;
+  /* line-height: 0.2rem; */
 }
 
 .city-btn {
