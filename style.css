@@ -704,9 +704,9 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
 
   #bot-box {
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     padding: 2rem 4rem;
-    font-size: 2rem;
+    font-size: 3rem;
     gap: 3rem;
   }
 
