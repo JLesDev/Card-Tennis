@@ -380,25 +380,30 @@ function playCard(card) {
     }
 
     if (Number(card_val_user) > card_opp && points > -1) {
+        console.log('p win');
         text2.innerText = 'You win!'
         if (score == 0 || score == 15) {
             score = score + 15
         } else if (score == 30) {
             score = score + 10
         } else {
+            console.log('win');
             win_game(1)
             return
         }
     } else if (Number(card_val_user) == card_opp && points > -1) {
+        console.log('tie');
         text2.innerText = 'Tie. Receive 5 points back.'
         points = points + 5;
     } else {
+        console.log('o win');
         text2.innerText = 'You lose!'
         if (opp_score == 0 || opp_score == 15) {
             opp_score = opp_score + 15
         } else if (opp_score == 30) {
             opp_score = opp_score + 10
         } else {
+            console.log('lose');
             win_game(0)
             return
         }
