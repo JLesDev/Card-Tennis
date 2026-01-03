@@ -1,13 +1,41 @@
-var cloud_wins;
-var cloud_tries;
-console.log(cloud_wins);
-console.log(cloud_tries);
-let mainTitle = document.getElementById('main-title');
-let mainText = document.createElement('p');
-let global = "Global win percentage: " + (cloud_wins/cloud_tries)*100 + "%";
-mainText.innerHTML = global;
-mainTitle.append(mainText);
+var cloud_wins
+var cloud_tries
 
+async function getCloudWins () {
+
+let mainTitle = document.getElementById('main-title')
+  let mainText = document.createElement('p')
+  let global =
+    'Global win percentage: Loading...'
+  mainText.innerHTML = global
+  mainTitle.append(mainText)
+
+
+  await fetch(
+    'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Wins'
+  )
+    .then(res => res.text())
+    .then(value => {
+      cloud_wins = Number(value)
+      console.log('Cloud wins:', value)
+    })
+
+  await fetch(
+    'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Tries'
+  )
+    .then(res => res.text())
+    .then(value => {
+      cloud_tries = Number(value)
+      console.log('Cloud tries:', value)
+    })
+
+//   let mainTitle = document.getElementById('main-title')
+//   let mainText = document.createElement('p')
+  global =
+    'Global win percentage: ' + Math.round((cloud_wins / cloud_tries) * 1000)/10 + '%'
+  mainText.innerHTML = global
+  mainTitle.append(mainText)
+}
 
 let quotes = [
   'If you’re offered a seat on a rocket ship, don’t ask what seat! Just get on. Sheryl Sandberg',
@@ -238,14 +266,44 @@ function win_game (did) {
   console.log(did2)
 
   if (did2 == 1) {
-    cloud_wins++;
-    cloud_tries++;
+    fetch(
+      'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          key: 'Wins',
+          value: cloud_wins + 1
+        })
+      }
+    )
+
+    fetch(
+      'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          key: 'Tries',
+          value: cloud_tries + 1
+        })
+      }
+    )
+
     text.innerText = 'You won Card Tennis!'
     content.append(text)
     document.getElementById('content').appendChild(newButton)
     content.append(play_again)
   } else {
-    cloud_tries++;
+    fetch(
+      'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          key: 'Tries',
+          value: cloud_tries + 1
+        })
+      }
+    )
+
     text.innerText = 'You lost but keep trying!'
     content.append(text)
     document.getElementById('content').appendChild(newButton)
@@ -293,6 +351,7 @@ function pointTotal () {
 }
 
 function run_game () {
+  getCloudWins()
   let cBox = document.createElement('div')
   cBox.setAttribute('id', 'content2')
   cBox.innerHTML = ''
@@ -372,8 +431,6 @@ function removeData (chart) {
 }
 
 function playCard (card) {
-
-
   let suit = Math.floor(Math.random() * 4)
 
   let card_opp_numeric = Math.max(2, Math.floor(Math.random() * 14))
