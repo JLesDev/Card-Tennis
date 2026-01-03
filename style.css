@@ -315,7 +315,7 @@ hr {
   pointer-events: auto;
 
   /* From https://css.glass */
-  background: rgba(0, 0, 0, 0.64);
+  background: rgba(0, 0, 0, 0.765);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
@@ -744,7 +744,7 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
     pointer-events: auto;
 
     /* From https://css.glass */
-    background: rgba(0, 0, 0, 0.64);
+    background: rgba(0, 0, 0, 0.762);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
@@ -824,7 +824,7 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
 
   #startButton{
     margin: 2rem;
-    font-size: 2rem;
+    font-size: 3rem;
   }
 
   p, a {
