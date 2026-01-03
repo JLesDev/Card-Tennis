@@ -190,7 +190,7 @@ function card_val_opp(card) {
         case 13:
             return 'Ace'
         default:
-            return card + 1
+            return card
     }
 }
 
@@ -252,7 +252,7 @@ function win_game(did) {
     //         document.getElementById('content').appendChild(newButton)
     //         content.append(play_again)
     // }
-    
+
     newButton.addEventListener('click', () => {
         console.log(did)
         copyResults(did)
@@ -358,9 +358,9 @@ function removeData(chart) {
 function playCard(card) {
     let suit = Math.floor(Math.random() * 4)
 
-    let card_opp = Math.max(2, Math.floor(Math.random() * 14))
+    let card_opp_numeric = Math.max(2, Math.floor(Math.random() * 14))
 
-    let card_opp_val = card_val_opp(card_opp)
+    let card_opp_string = card_val_opp(card_opp_numeric)
 
     let content3 = document.getElementById('content')
 
@@ -370,7 +370,7 @@ function playCard(card) {
         'You played the ' +
         card +
         '. Your opponent played the ' +
-        card_opp_val +
+        card_opp_string +
         ' of ' +
         draw1(suit) +
         's'
@@ -383,7 +383,7 @@ function playCard(card) {
     }
 
     console.log(Number(card_val_user))
-    console.log(card_opp)
+    console.log(card_opp_numeric)
 
     if (Number(card_val_user) > 19) {
         points = points - 20
@@ -398,7 +398,7 @@ function playCard(card) {
         return
     }
 
-    if (Number(card_val_user) > card_opp && points > -1) {
+    if (Number(card_val_user) > card_opp_numeric && points > -1) {
         console.log('p win');
         text2.innerText = 'You win!'
         if (score == 0 || score == 15) {
@@ -410,7 +410,7 @@ function playCard(card) {
             win_game(1)
             return
         }
-    } else if (Number(card_val_user) == card_opp && points > -1) {
+    } else if (Number(card_val_user) == card_opp_numeric && points > -1) {
         console.log('tie');
         text2.innerText = 'Tie. Receive 5 points back.'
         points = points + 5;
