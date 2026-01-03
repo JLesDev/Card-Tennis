@@ -37,6 +37,10 @@ let mainTitle = document.getElementById('main-title')
   mainTitle.append(mainText)
 }
 
+window.onload = function() {
+    getCloudWins();
+};
+
 let quotes = [
   'If you’re offered a seat on a rocket ship, don’t ask what seat! Just get on. Sheryl Sandberg',
   'First, have a definite, clear practical ideal; a goal, an objective. Second, have the necessary means to achieve your ends; wisdom, money, materials, and methods. Third, adjust all your means to that end. Aristotle',
@@ -351,7 +355,6 @@ function pointTotal () {
 }
 
 function run_game () {
-  getCloudWins()
   let cBox = document.createElement('div')
   cBox.setAttribute('id', 'content2')
   cBox.innerHTML = ''
