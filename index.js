@@ -1,5 +1,5 @@
-var cloud_wins = 5;
-var cloud_tries = 10;
+var cloud_wins;
+var cloud_tries;
 console.log(cloud_wins);
 console.log(cloud_tries);
 let mainTitle = document.getElementById('main-title');
