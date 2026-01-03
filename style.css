@@ -1,7 +1,7 @@
 :root {
   --bg-color: #121213;
   --bg-color-2: #1f1f21;
-  --fg-color: #f8f8f8;
+  --fg-color: #000000;
   --splash-color: #1c1c24;
   --hr-color: #2c2c2c;
   --accent: #ffde7a;
@@ -15,7 +15,7 @@ body, p, span {
   :root {
     --bg-color: #121213;
     --bg-color-2: #1f1f21;
-    --fg-color: #f8f8f8;
+    --fg-color: #000000;
     --splash-color: #1c1c24;
     --hr-color: #2c2c2c;
     --accent: #dee75e;
