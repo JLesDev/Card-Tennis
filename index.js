@@ -219,23 +219,40 @@ function win_game(did) {
     newButton.setAttribute('id', 'copyButton')
     newButton.innerHTML = 'Copy Results'
 
-    switch (did) {
-        case 0:
-            text.innerText = 'You lost but keep trying!'
-            content.append(text)
-            document.getElementById('content').appendChild(newButton)
-            content.append(play_again)
-        case 1:
-            text.innerText = 'You won Card Tennis!'
-            content.append(text)
-            document.getElementById('content').appendChild(newButton)
-            content.append(play_again)
-        default:
+    let did2 = did;
+    console.log(did2);
+
+    if(did2 == 1){
+        text.innerText = 'You won Card Tennis!'
+        content.append(text)
+        document.getElementById('content').appendChild(newButton)
+        content.append(play_again)
+    }
+    else{
             text.innerText = 'You lost but keep trying!'
             content.append(text)
             document.getElementById('content').appendChild(newButton)
             content.append(play_again)
     }
+
+    // switch (did2) {
+    //     case 0:
+    //         text.innerText = 'You lost but keep trying!'
+    //         content.append(text)
+    //         document.getElementById('content').appendChild(newButton)
+    //         content.append(play_again)
+    //     case 1:
+    //         text.innerText = 'You won Card Tennis!'
+    //         content.append(text)
+    //         document.getElementById('content').appendChild(newButton)
+    //         content.append(play_again)
+    //     default:
+    //         text.innerText = 'You lost but keep trying!'
+    //         content.append(text)
+    //         document.getElementById('content').appendChild(newButton)
+    //         content.append(play_again)
+    // }
+    
     newButton.addEventListener('click', () => {
         console.log(did)
         copyResults(did)
