@@ -1,7 +1,7 @@
 :root {
   --bg-color: #121213;
   --bg-color-2: #1f1f21;
-  --fg-color: #000000;
+  --fg-color: #eaeaea;
   --splash-color: #1c1c24;
   --hr-color: #2c2c2c;
   --accent: #ffde7a;
@@ -15,7 +15,7 @@ body, p, span {
   :root {
     --bg-color: #121213;
     --bg-color-2: #1f1f21;
-    --fg-color: #000000;
+    --fg-color: #d7d7d7;
     --splash-color: #1c1c24;
     --hr-color: #2c2c2c;
     --accent: #dee75e;
@@ -456,7 +456,7 @@ hr {
 .card-red {
   /* From https://css.glass */
   pointer-events: auto;
-  background: rgba(255, 255, 255, 0.61);
+  background: rgba(255, 255, 255, 0.743);
   /* background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu2cGBDbFMSmpUBIakGNjitZem1qQlFIUESg&s'); */
   font-weight: bold;
   font-family: system-ui, sans-serif;
@@ -501,7 +501,8 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
   /* From https://css.glass */
   /* background: rgba(8, 7, 7, 0.61); */
   pointer-events: auto;
-  background: rgba(255, 255, 255, 0.61);
+  /* background: rgba(255, 255, 255, 0.61); */
+  background: rgba(255, 255, 255, 0.743);
   font-family: system-ui, sans-serif;
   font-weight: bold;
   border-radius: 16px;
@@ -772,7 +773,8 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
     height: 14.5rem;
     font-size: 4.2rem;
     /* color: var(--fg-color); */
-    -webkit-text-fill-color: var(--fg-color);
+    /* -webkit-text-fill-color: var(--fg-color); */
+    -webkit-text-fill-color: #000000;
     -webkit-tap-highlight-color: transparent;
     color: #000;
   }
