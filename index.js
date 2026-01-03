@@ -583,7 +583,7 @@ document.getElementById('melb').addEventListener('click', function (e) {
 })
 
 document.getElementById('adel').addEventListener('click', function (e) {
-  how()
+  document.getElementById('rutton').style.visibility = 'visible';
   window.location.href = 'how.html'
 })
 
@@ -596,7 +596,6 @@ document.getElementById('melb').addEventListener('touchend', function (e) {
 })
 
 document.getElementById('adel').addEventListener('touchend', function (e) {
-  how()
   window.location.href = 'how.html'
 })
 
@@ -628,23 +627,6 @@ document.getElementById('more').addEventListener('touchend', function (e) {
 
 run(1)
 window.run = run
-
-function how () {
-  let tut = document.getElementById('tutorial')
-  tut.document.style.visibility
-  //  <div id="rutton">
-  //             <h1>So you think you know cards?</h1>
-  //             <p>Start with $60 cash.</p>
-  //             <p>Costs --</p>
-  //             <p>Ace: $20</p>
-  //             <p>Face cards: $15</p>
-  //             <p>Other: The number on the card.</p>
-  //             <p>Shuffling: $5</p>
-  //             <p>Selling a face card gives you $3, an Ace $5.</p>
-  //             <p>Play a higher card than your opponent. Tennis scoring.</p>
-  //             <p>It's a hard game but you're a hard person.</p>
-  //         </div>
-}
 
 function copyResults (did) {
   if (did == 1) {
