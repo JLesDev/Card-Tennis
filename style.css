@@ -689,7 +689,7 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
-#main-title{
+#main-title {
   margin: 0rem;
 }
 
@@ -822,7 +822,7 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
     margin-bottom: 1rem;
   }
 
-  #startButton{
+  #startButton {
     margin: 2rem;
     font-size: 3rem;
   }
