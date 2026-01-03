@@ -619,6 +619,11 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
   flex-direction: column;
 }
 
+#rutton{
+  overflow: scroll;
+  padding: 0rem, 2rem, 0rem, 2rem;
+}
+
 #content2 {
   flex-wrap: wrap;
   padding: 1rem 1rem;
