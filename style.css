@@ -771,6 +771,10 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
     max-width: 320px;
     height: 14.5rem;
     font-size: 4.2rem;
+    /* color: var(--fg-color); */
+    -webkit-text-fill-color: var(--fg-color);
+    -webkit-tap-highlight-color: transparent;
+    color: #000;
   }
 
   .city-btn,
