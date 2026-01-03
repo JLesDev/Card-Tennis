@@ -726,6 +726,8 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
 
   #top-box {
     padding: 1rem;
+    position: sticky;
+    top: 0;
     min-height: auto;
   }
 
