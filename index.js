@@ -1,9 +1,10 @@
-var cloud_wins;
-var cloud_tries;
-console.log(cloud_wins + cloud_tries);
+var cloud_wins = 5;
+var cloud_tries = 10;
+console.log(cloud_wins);
+console.log(cloud_tries);
 let mainTitle = document.getElementById('main-title');
 let mainText = document.createElement('p');
-let global = "Global win %: " + (cloud_wins/cloud_tries)*100;
+let global = "Global win percentage: " + (cloud_wins/cloud_tries)*100 + "%";
 mainText.innerHTML = global;
 mainTitle.append(mainText);
 
