@@ -470,7 +470,7 @@ hr {
   #placeholder2 {
     margin: 0rem;
     padding: 0.5rem 4rem;
-    display: flex;
+    /* display: flex; */
   }
 }
 
