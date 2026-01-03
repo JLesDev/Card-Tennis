@@ -637,27 +637,25 @@ document.getElementById('more').addEventListener('touchend', function (e) {
   window.location.href = 'more.html'
 })
 
+document.addEventListener('mousedown', e => {
+  if (
+    !e.target.closest(
+      '.card-red, .card-black, button, .keyboard-button, .city-btn, #tutorial, a, #startButton'
+    )
+  ) {
+    e.preventDefault()
+  }
+})
 
-
-// document.addEventListener('mousedown', e => {
-//   if (
-//     !e.target.closest(
-//       '.card-red, .card-black, button, .keyboard-button, .city-btn, #tutorial, a, #startButton'
-//     )
-//   ) {
-//     e.preventDefault()
-//   }
-// })
-
-// document.addEventListener('pointerdown', e => {
-//   if (
-//     !e.target.closest(
-//       '.card-red, .card-black, button, .keyboard-button, .city-btn, #tutorial'
-//     )
-//   ) {
-//     e.preventDefault()
-//   }
-// })
+document.addEventListener('pointerdown', e => {
+  if (
+    !e.target.closest(
+      '.card-red, .card-black, button, .keyboard-button, .city-btn, #tutorial'
+    )
+  ) {
+    e.preventDefault()
+  }
+})
 
 run(1)
 window.run = run
