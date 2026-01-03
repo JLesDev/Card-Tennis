@@ -1,3 +1,13 @@
+var cloud_wins;
+var cloud_tries;
+console.log(cloud_wins + cloud_tries);
+let mainTitle = document.getElementById('main-title');
+let mainText = document.createElement('p');
+let global = "Global win %: " + (cloud_wins/cloud_tries)*100;
+mainText.innerHTML = global;
+mainTitle.append(mainText);
+
+
 let quotes = [
   'If you’re offered a seat on a rocket ship, don’t ask what seat! Just get on. Sheryl Sandberg',
   'First, have a definite, clear practical ideal; a goal, an objective. Second, have the necessary means to achieve your ends; wisdom, money, materials, and methods. Third, adjust all your means to that end. Aristotle',
@@ -227,11 +237,14 @@ function win_game (did) {
   console.log(did2)
 
   if (did2 == 1) {
+    cloud_wins++;
+    cloud_tries++;
     text.innerText = 'You won Card Tennis!'
     content.append(text)
     document.getElementById('content').appendChild(newButton)
     content.append(play_again)
   } else {
+    cloud_tries++;
     text.innerText = 'You lost but keep trying!'
     content.append(text)
     document.getElementById('content').appendChild(newButton)
@@ -358,6 +371,8 @@ function removeData (chart) {
 }
 
 function playCard (card) {
+
+
   let suit = Math.floor(Math.random() * 4)
 
   let card_opp_numeric = Math.max(2, Math.floor(Math.random() * 14))
