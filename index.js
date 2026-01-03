@@ -58,9 +58,9 @@ function randomQuote () {
   parent2.appendChild(actual)
 }
 
-function startGame() {
-    let tut = document.getElementById('tutorial');
-    tut.style.visibility = 'hidden';
+function startGame () {
+  let tut = document.getElementById('tutorial')
+  tut.style.visibility = 'hidden'
 }
 
 const deck = []
@@ -494,7 +494,7 @@ document.addEventListener('click', function (e) {
 })
 
 document.getElementById('startButton').addEventListener('click', function (e) {
-  startGame();
+  startGame()
 })
 
 document.getElementById('melb').addEventListener('click', function (e) {
@@ -502,7 +502,7 @@ document.getElementById('melb').addEventListener('click', function (e) {
 })
 
 document.getElementById('adel').addEventListener('click', function (e) {
-  how();
+  how()
   window.location.href = 'how.html'
 })
 
@@ -533,44 +533,37 @@ document.getElementById('more').addEventListener('click', function (e) {
 run(1)
 window.run = run
 
-function how() {
-    let tut = document.getElementById("tutorial");
-    tut.document.style.visibility 
-    //  <div id="rutton">
-    //             <h1>So you think you know cards?</h1>
-    //             <p>Start with $60 cash.</p>
-    //             <p>Costs --</p>
-    //             <p>Ace: $20</p>
-    //             <p>Face cards: $15</p>
-    //             <p>Other: The number on the card.</p>
-    //             <p>Shuffling: $5</p>
-    //             <p>Selling a face card gives you $3, an Ace $5.</p>
-    //             <p>Play a higher card than your opponent. Tennis scoring.</p>
-    //             <p>It's a hard game but you're a hard person.</p>
-    //         </div>
+function how () {
+  let tut = document.getElementById('tutorial')
+  tut.document.style.visibility
+  //  <div id="rutton">
+  //             <h1>So you think you know cards?</h1>
+  //             <p>Start with $60 cash.</p>
+  //             <p>Costs --</p>
+  //             <p>Ace: $20</p>
+  //             <p>Face cards: $15</p>
+  //             <p>Other: The number on the card.</p>
+  //             <p>Shuffling: $5</p>
+  //             <p>Selling a face card gives you $3, an Ace $5.</p>
+  //             <p>Play a higher card than your opponent. Tennis scoring.</p>
+  //             <p>It's a hard game but you're a hard person.</p>
+  //         </div>
 }
 
-
-
 function copyResults (did) {
-  switch (did) {
-    case 0:
-      navigator.clipboard.writeText(
-        'I could not beat Card Tennis, can you? | JLesDev.github.io/Card-Tennis'
-      )
-    case 1:
-      navigator.clipboard.writeText(
-        'I beat Card Tennis, but can you? | JLesDev.github.io/Card-Tennis'
-      )
-    default:
-      navigator.clipboard.writeText(
-        'I beat Card Tennis, but can you? | JLesDev.github.io/Card-Tennis'
-      )
+  if (did == 1) {
+    navigator.clipboard.writeText(
+      'I beat Card Tennis, but can you? | JLesDev.github.io/Card-Tennis'
+    )
+  } else {
+    navigator.clipboard.writeText(
+      'I could not beat Card Tennis, can you? | JLesDev.github.io/Card-Tennis'
+    )
   }
 
   let copied = document.getElementById('copyButton')
   copied.style.visibility = 'visible'
   copied.innerHTML = 'Copy Results'
   document.getElementById('copyButton').innerHTML = 'Copied results!'
-  copied.style.color = 'rgba(71, 153, 103, 1)'
+  copied.style.color = 'rgba(134, 231, 171, 1)'
 }
