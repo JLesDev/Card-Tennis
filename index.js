@@ -1,5 +1,6 @@
 var cloud_wins
 var cloud_tries
+var cloud_realTries
 
 async function getCloudWins () {
 
@@ -35,10 +36,44 @@ let mainTitle = document.getElementById('main-title')
     'Global win percentage: ' + Math.round((cloud_wins / cloud_tries) * 1000)/10 + '%'
   mainText.innerHTML = global
   mainTitle.append(mainText)
+
+
+    await fetch(
+      'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          key: 'Try ' + cloud_realTries + ' accessed',
+          value: new Date().toLocaleString()
+        })
+      }
+    )
+
+    await fetch(
+    'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Tries'
+  )
+    .then(res => res.text())
+    .then(value => {
+      cloud_realTries = Number(value)
+      console.log('Real tries:', value)
+    })
+
+    await fetch(
+      'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          key: 'RealTries',
+          value: cloud_realTries + 1
+        })
+      }
+    )
 }
 
 window.onload = function() {
     getCloudWins();
+
+  
 };
 
 let quotes = [
@@ -583,7 +618,6 @@ document.getElementById('melb').addEventListener('click', function (e) {
 })
 
 document.getElementById('adel').addEventListener('click', function (e) {
-  document.getElementById('rutton').style.visibility = 'visible';
   window.location.href = 'how.html'
 })
 
