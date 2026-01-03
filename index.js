@@ -583,6 +583,21 @@ document.getElementById('more').addEventListener('click', function (e) {
   window.location.href = 'more.html'
 })
 
+document.getElementById('melb').addEventListener('touchend', function (e) {
+  window.location.href = 'index.html'
+})
+
+document.getElementById('adel').addEventListener('touchend', function (e) {
+  how()
+  window.location.href = 'how.html'
+})
+
+document.getElementById('more').addEventListener('touchend', function (e) {
+  window.location.href = 'more.html'
+})
+
+
+
 // document.addEventListener('mousedown', e => {
 //   if (
 //     !e.target.closest(
