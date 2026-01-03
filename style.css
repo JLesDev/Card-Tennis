@@ -4,7 +4,7 @@
   --fg-color: #eaeaea;
   --splash-color: #1c1c24;
   --hr-color: #2c2c2c;
-  --accent: #ffde7a;
+  --accent: #23b364;
 }
 
 body, p, span {
@@ -18,7 +18,7 @@ body, p, span {
     --fg-color: #d7d7d7;
     --splash-color: #1c1c24;
     --hr-color: #2c2c2c;
-    --accent: #dee75e;
+    --accent: #1ebe9c;
   }
 }
 
@@ -162,7 +162,7 @@ h1 {
   text-align: left;
 }
 
-p {
+p, a {
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 1.6;
@@ -200,8 +200,8 @@ p {
 
 a {
   text-decoration: none;
-  /* color: var(--accent); */
-  color: inherit;
+  color: var(--accent);
+  /* color: inherit; */
 }
 
 hr {
@@ -304,22 +304,40 @@ hr {
   min-width: 2rem;
 }
 
-/* Splash screen */
-#splash {
+#tutorial {
+  /* background: rgba(78, 78, 78, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3); */
+
+  pointer-events: auto;
+
+  /* From https://css.glass */
+  background: rgba(0, 0, 0, 0.64);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+
+  color: #979797;
+
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 9999;
+  z-index: 99999;
   width: min(30rem, 90%);
   max-height: 80%;
   padding: 1.5rem;
   overflow-y: auto;
   text-align: center;
-  background: var(--splash-color);
+  /* background: var(--splash-color); */
   border: 1px solid var(--bg-color-2);
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  /* border-radius: 12px; */
+  /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); */
 }
 
 /* Fade animation */
@@ -390,7 +408,9 @@ hr {
     text-align: center;
   }
 
-  p {
+
+
+  p, h3 {
     font-size: 1.8rem;
     max-width: 800px;
     line-height: 1.8;
@@ -618,7 +638,7 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
   flex-direction: column;
 }
 
-#rutton{
+#rutton {
   overflow: scroll;
   padding: 0rem, 2rem, 0rem, 2rem;
 }
@@ -700,12 +720,48 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
 
 #button-row {
   display: flex;
-  flex-direction: row;  
-  gap: 8px;            
+  flex-direction: row;
+  gap: 8px;
   align-items: center;
 }
 
 @media (max-width: 1100px) {
+
+  #tutorial {
+    /* background: rgba(78, 78, 78, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3); */
+
+    pointer-events: auto;
+
+    /* From https://css.glass */
+    background: rgba(0, 0, 0, 0.64);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+
+    color: #979797;
+
+    position: fixed;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99999;
+    width: min(50rem, 90%);
+    max-height: 80%;
+    padding: 3rem, 3rem, 1rem, 3rem;
+    overflow-y: auto;
+    text-align: center;
+    /* background: var(--splash-color); */
+    border: 1px solid var(--bg-color-2);
+    /* border-radius: 12px; */
+    /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); */
+  }
 
   #bot-box {
     flex-direction: row;
@@ -720,7 +776,7 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
   }
 
   body {
-    pointer-events: auto; 
+    pointer-events: auto;
   }
 
 
@@ -759,7 +815,12 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
     margin-bottom: 1rem;
   }
 
-  p {
+  #startButton{
+    margin: 2rem;
+    font-size: 2rem;
+  }
+
+  p, a {
     font-size: 3.05rem;
     line-height: 1.6;
   }
@@ -817,4 +878,9 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
   #more-box::before {
     filter: blur(40px);
   }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease-in forwards;
 }
