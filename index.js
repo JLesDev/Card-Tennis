@@ -570,6 +570,11 @@ document.getElementById('startButton').addEventListener('click', function (e) {
   startGame()
 })
 
+document.getElementById('startButton').addEventListener('touchend', function (e) {
+  startGame()
+})
+
+
 document.getElementById('melb').addEventListener('click', function (e) {
   window.location.href = 'index.html'
 })
