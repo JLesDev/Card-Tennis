@@ -195,26 +195,6 @@ function displayDeck (deck) {
   document.body.appendChild(deckElement)
 }
 
-<<<<<<< HEAD
-function draw5(cBox) {
-    for (let i = 0; i < 5; i++) {
-        let card1 = document.createElement('button')
-        card1.classList.add('card')
-        const myDeck2 = createDeck()
-        shuffleDeck(myDeck2)
-        const myCard2 = drawCard(myDeck2)
-        myCard2.id = `${myCard2.value} / ${myCard2.suit}`
-        let cardString = `${myCard2.value} of ${myCard2.suit}`
-        card1.textContent = cardString
-
-        if (myCard2.suit === 'Hearts' || myCard2.suit === 'Diamonds') {
-            card1.classList.add('card-red')
-        } else {
-            card1.classList.add('card-black')
-        }
-
-        cBox.appendChild(card1)
-=======
 function draw5 (cBox) {
   for (let i = 0; i < 5; i++) {
     let card1 = document.createElement('button')
@@ -245,7 +225,6 @@ function draw5 (cBox) {
       card1.classList.add('card-red')
     } else {
       card1.classList.add('card-black')
->>>>>>> 84ff4fc53e178bdaab2e9fb8734f77c4390f46da
     }
 
     console.log(myCard2.suit + card1.className)
@@ -325,31 +304,6 @@ function win_game (did) {
   let did2 = did
   console.log(did2)
 
-<<<<<<< HEAD
-    switch (did) {
-        case 0:
-            text.innerText = 'You lost but keep trying!'
-            content.append(text)
-            document.getElementById('content').appendChild(newButton)
-            content.append(play_again)
-        case 1:
-            text.innerText = 'You won Card Tennis!'
-            content.append(text)
-            document.getElementById('content').appendChild(newButton)
-            content.append(play_again)
-        default:
-            text.innerText = 'You lost but keep trying!'
-            content.append(text)
-            document.getElementById('content').appendChild(newButton)
-            content.append(play_again)
-    }
-    newButton.addEventListener('click', () => {
-        copyResults(did)
-    })
-    document.getElementById('play-card').addEventListener('click', function (e) {
-        location.reload()
-    })
-=======
   if (did2 == 1) {
     fetch(
       'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
@@ -395,24 +349,6 @@ function win_game (did) {
     content.append(play_again)
   }
 
-  // switch (did2) {
-  //     case 0:
-  //         text.innerText = 'You lost but keep trying!'
-  //         content.append(text)
-  //         document.getElementById('content').appendChild(newButton)
-  //         content.append(play_again)
-  //     case 1:
-  //         text.innerText = 'You won Card Tennis!'
-  //         content.append(text)
-  //         document.getElementById('content').appendChild(newButton)
-  //         content.append(play_again)
-  //     default:
-  //         text.innerText = 'You lost but keep trying!'
-  //         content.append(text)
-  //         document.getElementById('content').appendChild(newButton)
-  //         content.append(play_again)
-  // }
-
   newButton.addEventListener('click', () => {
     console.log(did)
     copyResults(did)
@@ -420,7 +356,6 @@ function win_game (did) {
   document.getElementById('play-card').addEventListener('click', function (e) {
     location.reload()
   })
->>>>>>> 84ff4fc53e178bdaab2e9fb8734f77c4390f46da
 }
 
 let points = 60
@@ -497,36 +432,9 @@ function run_game () {
     draw5(cBox)
   })
 
-<<<<<<< HEAD
-    buttonRow.append(play)
-    buttonRow.append(sell)
-    buttonRow.append(shuffle)
-    // content.append(shop)
-
-    document.getElementById('play-card').addEventListener('click', function (e) {
-        if (active.length != 0) {
-            document.getElementById('play-card').style.visibility = 'hidden'
-            let user_val = active[active.length - 1].innerText.split(' ')
-            let card_val_user = card_val(user_val[0])
-            playCard(active[active.length - 1].innerText)
-        }
-    })
-
-    document.getElementById('shuffle').addEventListener('click', function (e) {
-        document.getElementById('content2').innerHTML = '';
-        points = points - 5;
-        pointTotal();
-        draw5(cBox);
-    })
-
-    document.getElementById('sell').addEventListener('click', function (e) {
-        sellCard(active[active.length - 1])
-    })
-=======
   document.getElementById('sell').addEventListener('click', function (e) {
     sellCard(active[active.length - 1])
   })
->>>>>>> 84ff4fc53e178bdaab2e9fb8734f77c4390f46da
 }
 
 async function run () {
@@ -653,94 +561,10 @@ function sellCard (cardy) {
     points = points + 0
   }
 
-<<<<<<< HEAD
-    if (Number(card_val_user) > 19) {
-        points = points - 20
-    } else if (Number(card_val_user) > 10) {
-        points = points - 15
-    } else {
-        points = points - Number(card_val_user)
-    }
-
-    if (points < 1) {
-        win_game(0)
-        return
-    }
-
-    if (Number(card_val_user) > card_opp && points > -1) {
-        text2.innerText = 'You win!'
-        if (score == 0 || score == 15) {
-            score = score + 15
-        } else if (score == 30) {
-            score = score + 10
-        } else {
-            win_game(1)
-            return
-        }
-    } else if (Number(card_val_user) == card_opp && points > -1) {
-        text2.innerText = 'Tie. Receive 5 points back.'
-        points = points + 5;
-    } else {
-        text2.innerText = 'You lose!'
-        if (opp_score == 0 || opp_score == 15) {
-            opp_score = opp_score + 15
-        } else if (opp_score == 30) {
-            opp_score = opp_score + 10
-        } else {
-            win_game(0)
-            return
-        }
-    }
-
-    let play_btn = document.createElement('button')
-    play_btn.innerText = 'Next round'
-    play_btn.classList.add('play-btn')
-    play_btn.setAttribute('id', 'next-round')
-
-    content3.appendChild(text)
-    content3.appendChild(text2)
-    content3.appendChild(play_btn)
-
-    play_btn.addEventListener('click', function (e) {
-        run_game()
-    })
-}
-
-
-function sellCard(cardy) {
-    let content3 = document.getElementById('content')
-
-    let card = active[active.length - 1].innerText;
-
-    let user_val = card.split(' ')
-    let card_val_user = card_val(user_val[0])
-    let text2 = document.createElement('p')
-
-    if (card == null) {
-        alert('Not a valid option...')
-    }
-
-    if (Number(card_val_user) > 19) {
-        points = points + 5
-    } else if (Number(card_val_user) > 10) {
-        points = points + 3
-    } else {
-        points = points + 0
-    }
-
-    if (points < 1) {
-        win_game(0)
-        return
-    }
-
-    pointTotal();
-    cardy.remove();
-=======
   if (points < 1) {
     win_game(0)
     return
   }
->>>>>>> 84ff4fc53e178bdaab2e9fb8734f77c4390f46da
 
   pointTotal()
   cardy.remove()
@@ -758,12 +582,8 @@ document.addEventListener('click', function (e) {
   const card = e.target.closest('.card-red, .card-black')
   if (!card) return
 
-<<<<<<< HEAD
-    active = [card]
-=======
   active = [card] // only one active card
   console.log('Selected:', card.innerText)
->>>>>>> 84ff4fc53e178bdaab2e9fb8734f77c4390f46da
 })
 
 document.getElementById('startButton').addEventListener('click', function (e) {
@@ -802,27 +622,6 @@ document.getElementById('more').addEventListener('touchend', function (e) {
   window.location.href = 'more.html'
 })
 
-<<<<<<< HEAD
-// document.addEventListener('mousedown', e => {
-//     if (
-//         !e.target.closest(
-//             '.card-red, .card-black, button, .keyboard-button, .city-btn'
-//         )
-//     ) {
-//         e.preventDefault()
-//     }
-// })
-
-// document.addEventListener('pointerdown', e => {
-//     if (
-//         !e.target.closest(
-//             '.card-red, .card-black, button, .keyboard-button, .city-btn'
-//         )
-//     ) {
-//         e.preventDefault()
-//     }
-// })
-=======
 document.addEventListener('mousedown', e => {
   if (
     !e.target.closest(
@@ -842,7 +641,6 @@ document.addEventListener('pointerdown', e => {
     e.preventDefault()
   }
 })
->>>>>>> 84ff4fc53e178bdaab2e9fb8734f77c4390f46da
 
 run(1)
 window.run = run

@@ -831,10 +831,6 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
     margin-bottom: 1rem;
   }
 
-<<<<<<< HEAD
-  p {
-    font-size: 3.05rem;
-=======
   #startButton, #multiplayer {
     margin: 2rem;
     font-size: 3rem;
@@ -842,7 +838,6 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
 
   p, a {
     font-size: 4.05rem;
->>>>>>> 84ff4fc53e178bdaab2e9fb8734f77c4390f46da
     line-height: 1.6;
   }
 
@@ -908,4 +903,13 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
 .fade-in {
   opacity: 0;
   animation: fadeIn 1s ease-in forwards;
+}
+
+#rutton::-webkit-scrollbar {
+display: none;
+}
+
+#rutton {
+-ms-overflow-style: none; 
+scrollbar-width: none; 
 }

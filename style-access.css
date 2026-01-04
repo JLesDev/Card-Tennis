@@ -129,6 +129,7 @@ body {
   margin: 0 auto;
   /* background:rgba(0, 0, 0, 0.1); */
   overflow-x: hidden;
+  overflow-y: hidden;
   pointer-events: none;
 }
 
@@ -144,6 +145,7 @@ body::before {
 }
 
 html {
+  overflow: hidden;
   height: 100%;
   color: #707070;
   position: relative;
@@ -218,7 +220,6 @@ hr {
   filter: blur(1px);
 }
 
-/* weather graph */
 #chart {
   display: flex;
   align-items: center;
@@ -929,4 +930,13 @@ input {
   font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
+}
+
+#rutton::-webkit-scrollbar {
+display: none;
+}
+
+#rutton {
+-ms-overflow-style: none; 
+scrollbar-width: none; 
 }
