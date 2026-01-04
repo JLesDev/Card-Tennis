@@ -5,7 +5,9 @@ var cloud_realTries
 async function roomLoad () {
   let name = 'default'
 
-  let opp_name = ''
+  let opp_name = 'default_username'
+
+  // let readyToGo = 0
 
   let roomAfree = 0
   let roomBfree = 0
@@ -92,22 +94,33 @@ async function roomLoad () {
           console.log(roomAfree)
         })
 
-      while (opp_name == '') {
+      while (roomAfree == 1) {
         await fetch(
           'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
             pin + ' opponent name'
         )
           .then(res => res.text())
           .then(value => {
-            opp_name = value
+            roomAfree = Number(value)
             console.log(roomAfree)
           })
       }
+
+      await fetch(
+          'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+            pin + ' opponent name'
+        )
+          .then(res => res.text())
+          .then(value => {
+            opp_name = value
+            console.log(opp_name)
+          })
+
       tutorial.innerHTML = ''
       text =
         'Success! ' +
         opp_name +
-        ' has joined your room! Reay when you are...'
+        ' has joined your room! Ready when you are...'
       tutorial.append(text)
 
       ready.innerHTML = 'Start match!'
@@ -203,6 +216,16 @@ async function roomLoad () {
                 body: JSON.stringify({
                   key: 'Room' + pin + ' opponent name',
                   value: name
+                })
+              }
+            )
+            await fetch(
+              'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+              {
+                method: 'POST',
+                body: JSON.stringify({
+                  key: 'Room' + pin,
+                  value: 2
                 })
               }
             )
