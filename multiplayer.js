@@ -145,13 +145,13 @@ async function roomLoad () {
       let ready = document.createElement('button')
       ready.innerHTML = 'Connect'
       ready.classList.add('room')
-      ready.id = 'ready'
+      ready.id = 'ready2'
       tutorial.append(ready)
 
       let connection_pin = 0
 
       document
-        .getElementById('ready')
+        .getElementById('ready2')
         .addEventListener('click', async function (e) {
           ready.innerHTML = 'Loading'
 
@@ -229,7 +229,8 @@ async function roomLoad () {
                 )
                 console.log('room ready')
               })
-          } else {
+          } 
+          else {
             let tutorial = document.getElementById('tutorial')
             tutorial.innerHTML = ''
             let text = document.createElement('p')
