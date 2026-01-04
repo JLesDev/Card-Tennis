@@ -107,20 +107,19 @@ async function roomLoad () {
       }
 
       await fetch(
-          'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
-            pin + ' opponent name'
-        )
-          .then(res => res.text())
-          .then(value => {
-            opp_name = value
-            console.log(opp_name)
-          })
+        'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+          pin +
+          ' opponent name'
+      )
+        .then(res => res.text())
+        .then(value => {
+          opp_name = value
+          console.log(opp_name)
+        })
 
       tutorial.innerHTML = ''
       text =
-        'Success! ' +
-        opp_name +
-        ' has joined your room! Ready when you are...'
+        'Success! ' + opp_name + ' has joined your room! Ready when you are...'
       tutorial.append(text)
 
       ready.innerHTML = 'Start match!'
@@ -204,31 +203,28 @@ async function roomLoad () {
             document
               .getElementById('ready')
               .addEventListener('click', async function (e) {
-                window.location.href = 'multiplayer.html'
+                name = document.getElementById('inputBox')
+                await fetch(
+                  'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+                  {
+                    method: 'POST',
+                    body: JSON.stringify({
+                      key: 'Room' + pin + ' opponent name',
+                      value: name
+                    })
+                  }
+                )
+                await fetch(
+                  'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+                  {
+                    method: 'POST',
+                    body: JSON.stringify({
+                      key: 'Room' + pin,
+                      value: 2
+                    })
+                  }
+                )
               })
-
-            name = document.getElementById('inputBox')
-
-            await fetch(
-              'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
-              {
-                method: 'POST',
-                body: JSON.stringify({
-                  key: 'Room' + pin + ' opponent name',
-                  value: name
-                })
-              }
-            )
-            await fetch(
-              'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
-              {
-                method: 'POST',
-                body: JSON.stringify({
-                  key: 'Room' + pin,
-                  value: 2
-                })
-              }
-            )
           } else {
             let tutorial = document.getElementById('tutorial')
             tutorial.innerHTML = ''
