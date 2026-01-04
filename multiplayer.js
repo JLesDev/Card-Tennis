@@ -5,6 +5,11 @@ var cloud_realTries
 async function roomLoad () {
   let name = 'default'
 
+  let opp_name = ''
+
+  let roomAfree = 0
+  let roomBfree = 0
+
   let roomAbutton = document.getElementById('roomA')
   let roomBbutton = document.getElementById('roomB')
 
@@ -76,10 +81,198 @@ async function roomLoad () {
             }
           )
         })
+
+      await fetch(
+        'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+          pin
+      )
+        .then(res => res.text())
+        .then(value => {
+          roomAfree = Number(value)
+          console.log(roomAfree)
+        })
+
+      while (opp_name == '') {
+        await fetch(
+          'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+            pin + ' opponent name'
+        )
+          .then(res => res.text())
+          .then(value => {
+            opp_name = value
+            console.log(roomAfree)
+          })
+      }
+      tutorial.innerHTML = ''
+      text =
+        'Success! ' +
+        opp_name +
+        ' has joined your room! Reay when you are...'
+      tutorial.append(text)
+
+      ready.innerHTML = 'Start match!'
+      ready.classList.add('room')
+      ready.id = 'ready'
+      tutorial.append(ready)
     })
 
-  let roomAfree = 0
-  let roomBfree = 0
+  document
+    .getElementById('roomB')
+    .addEventListener('click', async function (e) {
+      let tutorial = document.getElementById('tutorial')
+      tutorial.innerHTML = ''
+      let text = document.createElement('p')
+      text = 'Enter in your pin: '
+      tutorial.append(text)
+
+      let input = document.createElement('input')
+      input.id = 'inputBox'
+      // input.innerHTML = 'Name'
+      tutorial.append(input)
+
+      let ready = document.createElement('button')
+      ready.innerHTML = 'Connect'
+      ready.classList.add('room')
+      ready.id = 'ready'
+      tutorial.append(ready)
+
+      let connection_pin = 0
+
+      document
+        .getElementById('ready')
+        .addEventListener('click', async function (e) {
+          ready.innerHTML = 'Loading'
+
+          connection_pin = document.getElementById('inputBox').value
+
+          console.log(connection_pin)
+
+          await fetch(
+            'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+              connection_pin
+          )
+            .then(res => res.text())
+            .then(value => {
+              roomAfree = Number(value)
+              console.log(roomAfree)
+            })
+
+          await fetch(
+            'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+              connection_pin +
+              ' host name'
+          )
+            .then(res => res.text())
+            .then(value => {
+              opp_name = value
+              console.log(opp_name)
+            })
+
+          if (roomAfree == 1) {
+            let tutorial = document.getElementById('tutorial')
+            tutorial.innerHTML = ''
+            let text = document.createElement('p')
+            text =
+              'Connection successful to ' +
+              opp_name +
+              "'s room! Set your name: "
+            tutorial.append(text)
+
+            let input = document.createElement('input')
+            input.id = 'inputBox'
+            tutorial.append(input)
+
+            let ready = document.createElement('button')
+            ready.innerHTML = 'Ready up!'
+            ready.classList.add('room')
+            ready.id = 'ready'
+            tutorial.append(ready)
+
+            document
+              .getElementById('ready')
+              .addEventListener('click', async function (e) {
+                window.location.href = 'multiplayer.html'
+              })
+
+            name = document.getElementById('inputBox')
+
+            await fetch(
+              'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+              {
+                method: 'POST',
+                body: JSON.stringify({
+                  key: 'Room' + pin + ' opponent name',
+                  value: name
+                })
+              }
+            )
+          } else {
+            let tutorial = document.getElementById('tutorial')
+            tutorial.innerHTML = ''
+            let text = document.createElement('p')
+            text = 'Invalid pin'
+            tutorial.append(text)
+
+            let ready = document.createElement('button')
+            ready.innerHTML = 'Reload page'
+            ready.classList.add('room')
+            ready.id = 'ready'
+            tutorial.append(ready)
+
+            document
+              .getElementById('ready')
+              .addEventListener('click', async function (e) {
+                window.location.href = 'multiplayer.html'
+              })
+          }
+
+          // let tutorial = document.getElementById('tutorial')
+          // tutorial.innerHTML = ''
+
+          // let text = document.createElement('p')
+          // text =
+          //   'Room pin: ' +
+          //   pin +
+          //   '. Get your friend to join with the room pin. ' +
+          //   name +
+          //   ' is a cool name! Waiting for another player...'
+          // tutorial.append(text)
+
+          await fetch(
+            'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+            {
+              method: 'POST',
+              body: JSON.stringify({
+                key: 'Room' + pin + ' host name',
+                value: name
+              })
+            }
+          )
+        })
+
+      await fetch(
+        'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+          pin
+      )
+        .then(res => res.text())
+        .then(value => {
+          roomAfree = Number(value)
+          console.log(roomAfree)
+        })
+
+      while (roomAfree < 2) {
+        await fetch(
+          'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+            pin
+        )
+          .then(res => res.text())
+          .then(value => {
+            roomAfree = Number(value)
+            console.log(roomAfree)
+          })
+      }
+      console.log('ready!')
+    })
 
   await fetch(
     'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=RoomA'
