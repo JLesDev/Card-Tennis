@@ -2,7 +2,7 @@ var cloud_wins
 var cloud_tries
 var cloud_realTries
 
-async function roomLoad () {
+async function roomLoad() {
   let name = 'default'
 
   let opp_name = 'default_username'
@@ -21,6 +21,7 @@ async function roomLoad () {
     .getElementById('roomA')
     .addEventListener('click', async function (e) {
       roomAbutton.innerHTML = 'LOADING'
+      roomAbutton.style.background = rgba(54, 79, 204, 1)
 
       await fetch(
         'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
@@ -86,7 +87,7 @@ async function roomLoad () {
 
       await fetch(
         'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
-          pin
+        pin
       )
         .then(res => res.text())
         .then(value => {
@@ -97,7 +98,7 @@ async function roomLoad () {
       while (roomAfree == 1) {
         await fetch(
           'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
-            pin
+          pin
         )
           .then(res => res.text())
           .then(value => {
@@ -108,8 +109,8 @@ async function roomLoad () {
 
       await fetch(
         'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
-          pin +
-          ' opponent name'
+        pin +
+        ' opponent name'
       )
         .then(res => res.text())
         .then(value => {
@@ -153,7 +154,8 @@ async function roomLoad () {
       document
         .getElementById('ready2')
         .addEventListener('click', async function (e) {
-          ready.innerHTML = 'Loading'
+          ready.innerHTML = 'LOADING'
+          ready.style.background = rgba(54, 79, 204, 1)
 
           connection_pin = document.getElementById('inputBox').value
 
@@ -161,7 +163,7 @@ async function roomLoad () {
 
           await fetch(
             'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
-              connection_pin
+            connection_pin
           )
             .then(res => res.text())
             .then(value => {
@@ -171,8 +173,8 @@ async function roomLoad () {
 
           await fetch(
             'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
-              connection_pin +
-              ' host name'
+            connection_pin +
+            ' host name'
           )
             .then(res => res.text())
             .then(value => {
@@ -203,10 +205,22 @@ async function roomLoad () {
             document
               .getElementById('ready')
               .addEventListener('click', async function (e) {
-                ready.innerHTML = 'Loading'
-                
+
                 name = document.getElementById('inputBox2').value
                 console.log(name);
+
+                let tutorial = document.getElementById('tutorial')
+                tutorial.innerHTML = ''
+                let text = document.createElement('p')
+                text =
+                  'Okay, ' +
+                  name +
+                  ". Waiting for host to start match... "
+                tutorial.append(text)
+
+                // ready.innerHTML = 'LOADING'
+                // ready.style.background = rgba(54, 79, 204, 1)
+
                 await fetch(
                   'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
                   {
@@ -230,7 +244,7 @@ async function roomLoad () {
                 )
                 console.log('room ready')
               })
-          } 
+          }
           else {
             let tutorial = document.getElementById('tutorial')
             tutorial.innerHTML = ''
@@ -251,18 +265,6 @@ async function roomLoad () {
               })
           }
 
-          // let tutorial = document.getElementById('tutorial')
-          // tutorial.innerHTML = ''
-
-          // let text = document.createElement('p')
-          // text =
-          //   'Room pin: ' +
-          //   pin +
-          //   '. Get your friend to join with the room pin. ' +
-          //   name +
-          //   ' is a cool name! Waiting for another player...'
-          // tutorial.append(text)
-
           await fetch(
             'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
             {
@@ -277,7 +279,7 @@ async function roomLoad () {
 
       await fetch(
         'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
-          pin
+        pin
       )
         .then(res => res.text())
         .then(value => {
@@ -288,7 +290,7 @@ async function roomLoad () {
       while (roomAfree < 2) {
         await fetch(
           'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
-            pin
+          pin
         )
           .then(res => res.text())
           .then(value => {
@@ -376,7 +378,7 @@ async function roomLoad () {
   //   })
 }
 
-async function roomLoad2 () {
+async function roomLoad2() {
   let roomAbutton = document.getElementById('roomA')
   let roomBbutton = document.getElementById('roomB')
 
@@ -460,7 +462,7 @@ async function roomLoad2 () {
     })
 }
 
-async function getCloudWins () {
+async function getCloudWins() {
   let mainTitle = document.getElementById('main-title')
   let mainText = document.createElement('p')
   let global = 'Global win percentage: Loading...'
@@ -582,7 +584,7 @@ let quotes = [
   'If you can dream it, you can achieve it. Zig Ziglar'
 ]
 
-function randomQuote () {
+function randomQuote() {
   let parent2 = document.getElementById('bot-box')
   let randomInt = Math.floor(Math.random() * 47)
   let actual = document.createElement('p')
@@ -591,7 +593,7 @@ function randomQuote () {
   parent2.appendChild(actual)
 }
 
-function startGame () {
+function startGame() {
   let tut = document.getElementById('tutorial')
   tut.style.visibility = 'hidden'
 }
@@ -620,26 +622,26 @@ suits.forEach(suit => {
   })
 })
 
-function createDeck () {
+function createDeck() {
   return suits.flatMap(suit => values.map(value => ({ value, suit })))
 }
 const myDeck = createDeck()
 
-function shuffleDeck (deck) {
+function shuffleDeck(deck) {
   for (let i = deck.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
-    ;[deck[i], deck[j]] = [deck[j], deck[i]]
+      ;[deck[i], deck[j]] = [deck[j], deck[i]]
   }
   return deck
 }
 shuffleDeck(myDeck)
 
-function drawCard (deck) {
+function drawCard(deck) {
   return deck.pop()
 }
 const myCard = drawCard(myDeck)
 
-function displayDeck (deck) {
+function displayDeck(deck) {
   const deckElement = document.createElement('div')
   deck.forEach(card => {
     const cardElement = document.createElement('div')
@@ -650,7 +652,7 @@ function displayDeck (deck) {
   document.body.appendChild(deckElement)
 }
 
-function draw5 (cBox) {
+function draw5(cBox) {
   for (let i = 0; i < 5; i++) {
     let card1 = document.createElement('button')
     card1.classList.add('card')
@@ -687,7 +689,7 @@ function draw5 (cBox) {
   }
 }
 
-function draw1 (suit) {
+function draw1(suit) {
   switch (suit) {
     case 0:
       return 'Heart'
@@ -702,7 +704,7 @@ function draw1 (suit) {
   }
 }
 
-function card_val (card) {
+function card_val(card) {
   switch (card) {
     case 'Jack':
       return 11
@@ -717,7 +719,7 @@ function card_val (card) {
   }
 }
 
-function card_val_opp (card) {
+function card_val_opp(card) {
   switch (card) {
     case 10:
       return 'Jack'
@@ -732,7 +734,7 @@ function card_val_opp (card) {
   }
 }
 
-function win_game (did) {
+function win_game(did) {
   console.log(did)
   let content = document.getElementById('content')
   content.innerHTML = ''
@@ -835,7 +837,7 @@ let points = 60
 let score = 0
 let opp_score = 0
 
-function pointTotal () {
+function pointTotal() {
   if (points < 0) {
     win_game(0)
   }
@@ -844,7 +846,7 @@ function pointTotal () {
     'Cash: $' + points + ' | Score: ' + score + ' - ' + opp_score
 }
 
-function run_game () {
+function run_game() {
   let cBox = document.createElement('div')
   cBox.setAttribute('id', 'content2')
   cBox.innerHTML = ''
@@ -910,12 +912,12 @@ function run_game () {
   })
 }
 
-async function run () {
+async function run() {
   randomQuote()
   run_game()
 }
 
-function removeData (chart) {
+function removeData(chart) {
   chart.data.labels.pop()
   chart.data.datasets.forEach(dataset => {
     dataset.data.pop()
@@ -923,7 +925,7 @@ function removeData (chart) {
   chart.update()
 }
 
-function playCard (card) {
+function playCard(card) {
   let suit = Math.floor(Math.random() * 4)
 
   let card_opp_numeric = Math.max(2, Math.floor(Math.random() * 14))
@@ -1011,7 +1013,7 @@ function playCard (card) {
   })
 }
 
-function sellCard (cardy) {
+function sellCard(cardy) {
   let content3 = document.getElementById('content')
 
   let card = active[active.length - 1].innerText
@@ -1118,7 +1120,7 @@ document.addEventListener('pointerdown', e => {
 run(1)
 window.run = run
 
-function copyResults (did) {
+function copyResults(did) {
   if (did == 1) {
     navigator.clipboard.writeText(
       'I beat Card Tennis, but can you? | JLesDev.github.io/Card-Tennis'
