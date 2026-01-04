@@ -264,6 +264,7 @@ hr {
 
 #readMoreButt,
 #startButton,
+#multiplayer,
 .keyboard-button {
   display: inline-flex;
   align-items: center;
@@ -283,6 +284,7 @@ hr {
 
 #readMoreButt:hover,
 #startButton:hover,
+#multiplayer:hover,
 .keyboard-button:hover {
   background: #364fcc;
 }
@@ -829,7 +831,7 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
     margin-bottom: 1rem;
   }
 
-  #startButton {
+  #startButton, #multiplayer {
     margin: 2rem;
     font-size: 3rem;
   }
