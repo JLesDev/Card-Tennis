@@ -320,7 +320,7 @@ hr {
   pointer-events: auto;
 
   /* From https://css.glass */
-  
+
   /* background: rgba(255, 223, 223, 1); */
   background: #ffdec9;
   border-radius: 16px;
@@ -330,7 +330,7 @@ hr {
   border: 1px solid rgba(0, 0, 0, 0.3);
 
 
-  font-size: 4.05rem;
+  font-size: 1.5rem;
   color: var(--fg-color);
   font-weight: bold;
 
@@ -345,7 +345,7 @@ hr {
   overflow-y: auto;
   text-align: center;
   /* background: var(--splash-color); */
-  border: 1px solid var(--bg-color-2);
+  border: 0.3rem solid var(--bg-color-2);
   /* border-radius: 12px; */
   /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); */
 }
@@ -748,6 +748,10 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
 
     pointer-events: auto;
 
+    font-size: 4.05rem;
+    color: var(--fg-color);
+    font-weight: bold;
+
     /* From https://css.glass */
     /* background: rgba(0, 0, 0, 0.762); */
     border-radius: 16px;
@@ -860,7 +864,7 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
     color: #000;
   }
 
-  .city-btn{
+  .city-btn {
     font-size: 3.9rem;
     padding: 1rem 2rem;
   }
@@ -901,6 +905,15 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
   #more-box::before {
      filter: blur(40px); 
   } */
+
+  input {
+    border-radius: 4rem;
+    height: 5rem;
+    color: var(--fg-color);
+    font-size: 4rem;
+    font-weight: bold;
+    text-align: center;
+  }
 }
 
 .fade-in {
@@ -910,9 +923,10 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
 
 input {
   border-radius: 4rem;
-  height: 5rem;
+  height: 2rem;
   color: var(--fg-color);
-  font-size: 4rem;
+  width: 100%;
+  font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
 }
