@@ -264,6 +264,8 @@ hr {
 
 #readMoreButt,
 #startButton,
+.room,
+#multiplayer,
 .keyboard-button {
   display: inline-flex;
   align-items: center;
@@ -283,6 +285,8 @@ hr {
 
 #readMoreButt:hover,
 #startButton:hover,
+.room:hover,
+#multiplayer:hover,
 .keyboard-button:hover {
   background: #364fcc;
 }
@@ -325,7 +329,10 @@ hr {
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(0, 0, 0, 0.3);
 
-  color: #979797;
+
+  font-size: 4.05rem;
+  color: var(--fg-color);
+  font-weight: bold;
 
   position: fixed;
   top: 50%;
@@ -749,7 +756,7 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(0, 0, 0, 0.3);
 
-    color: #979797;
+    /* color: #979797; */
 
     position: fixed;
     top: 42%;
@@ -826,7 +833,7 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
     margin-bottom: 1rem;
   }
 
-  #startButton {
+  #startButton, #multiplayer, .room {
     margin: 2rem;
     font-size: 3rem;
   }
@@ -899,4 +906,13 @@ radial-gradient(circle at 70% 80%, rgba(219, 219, 219, 0.781), transparent 40%);
 .fade-in {
   opacity: 0;
   animation: fadeIn 1s ease-in forwards;
+}
+
+input {
+  border-radius: 4rem;
+  height: 5rem;
+  color: var(--fg-color);
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: center;
 }

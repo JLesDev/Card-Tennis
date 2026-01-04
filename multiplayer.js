@@ -2,15 +2,464 @@ var cloud_wins
 var cloud_tries
 var cloud_realTries
 
-async function getCloudWins () {
+async function roomLoad () {
+  let name = 'default'
 
-let mainTitle = document.getElementById('main-title')
+  let opp_name = 'default_username'
+
+  // let readyToGo = 0
+
+  let roomAfree = 0
+  let roomBfree = 0
+
+  let roomAbutton = document.getElementById('roomA')
+  let roomBbutton = document.getElementById('roomB')
+
+  let pin = Math.round(Math.random() * Math.random() * 1000000)
+
+  document
+    .getElementById('roomA')
+    .addEventListener('click', async function (e) {
+      roomAbutton.innerHTML = 'LOADING'
+
+      await fetch(
+        'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            key: 'Room' + pin,
+            value: 1
+          })
+        }
+      )
+
+      let tutorial = document.getElementById('tutorial')
+      tutorial.innerHTML = ''
+      let text = document.createElement('p')
+      text =
+        'Room pin: ' +
+        pin +
+        '. Get your friend to join with the room pin! Enter your name: '
+      tutorial.append(text)
+
+      let input = document.createElement('input')
+      input.id = 'inputBox'
+      // input.innerHTML = 'Name'
+      tutorial.append(input)
+
+      let ready = document.createElement('button')
+      ready.innerHTML = 'Ready Up!'
+      ready.classList.add('room')
+      ready.id = 'ready'
+      tutorial.append(ready)
+
+      document
+        .getElementById('ready')
+        .addEventListener('click', async function (e) {
+          name = document.getElementById('inputBox').value
+
+          console.log(name)
+
+          let tutorial = document.getElementById('tutorial')
+          tutorial.innerHTML = ''
+
+          let text = document.createElement('p')
+          text =
+            'Room pin: ' +
+            pin +
+            '. Get your friend to join with the room pin. ' +
+            name +
+            ' is a cool name! Waiting for another player...'
+          tutorial.append(text)
+
+          await fetch(
+            'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+            {
+              method: 'POST',
+              body: JSON.stringify({
+                key: 'Room' + pin + ' host name',
+                value: name
+              })
+            }
+          )
+        })
+
+      await fetch(
+        'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+          pin
+      )
+        .then(res => res.text())
+        .then(value => {
+          roomAfree = Number(value)
+          console.log(roomAfree)
+        })
+
+      while (roomAfree == 1) {
+        await fetch(
+          'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+            pin
+        )
+          .then(res => res.text())
+          .then(value => {
+            roomAfree = Number(value)
+            console.log(roomAfree)
+          })
+      }
+
+      await fetch(
+        'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+          pin +
+          ' opponent name'
+      )
+        .then(res => res.text())
+        .then(value => {
+          opp_name = value
+          console.log(opp_name)
+        })
+
+      tutorial.innerHTML = ''
+      text =
+        'Success! ' + opp_name + ' has joined your room! Ready when you are...'
+      tutorial.append(text)
+
+      ready.innerHTML = 'Start match!'
+      ready.classList.add('room')
+      ready.id = 'ready'
+      tutorial.append(ready)
+    })
+
+  document
+    .getElementById('roomB')
+    .addEventListener('click', async function (e) {
+      let tutorial = document.getElementById('tutorial')
+      tutorial.innerHTML = ''
+      let text = document.createElement('p')
+      text = 'Enter in your pin: '
+      tutorial.append(text)
+
+      let input = document.createElement('input')
+      input.id = 'inputBox'
+      // input.innerHTML = 'Name'
+      tutorial.append(input)
+
+      let ready = document.createElement('button')
+      ready.innerHTML = 'Connect'
+      ready.classList.add('room')
+      ready.id = 'ready'
+      tutorial.append(ready)
+
+      let connection_pin = 0
+
+      document
+        .getElementById('ready')
+        .addEventListener('click', async function (e) {
+          ready.innerHTML = 'Loading'
+
+          connection_pin = document.getElementById('inputBox').value
+
+          console.log(connection_pin)
+
+          await fetch(
+            'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+              connection_pin
+          )
+            .then(res => res.text())
+            .then(value => {
+              roomAfree = Number(value)
+              console.log(roomAfree)
+            })
+
+          await fetch(
+            'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+              connection_pin +
+              ' host name'
+          )
+            .then(res => res.text())
+            .then(value => {
+              opp_name = value
+              console.log(opp_name)
+            })
+
+          if (roomAfree == 1) {
+            let tutorial = document.getElementById('tutorial')
+            tutorial.innerHTML = ''
+            let text = document.createElement('p')
+            text =
+              'Connection successful to ' +
+              opp_name +
+              "'s room! Set your name: "
+            tutorial.append(text)
+
+            let input = document.createElement('input')
+            input.id = 'inputBox'
+            tutorial.append(input)
+
+            let ready = document.createElement('button')
+            ready.innerHTML = 'Ready up!'
+            ready.classList.add('room')
+            ready.id = 'ready'
+            tutorial.append(ready)
+
+            document
+              .getElementById('ready')
+              .addEventListener('click', async function (e) {
+                name = document.getElementById('inputBox')
+                await fetch(
+                  'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+                  {
+                    method: 'POST',
+                    body: JSON.stringify({
+                      key: 'Room' + pin + ' opponent name',
+                      value: name
+                    })
+                  }
+                )
+                await fetch(
+                  'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+                  {
+                    method: 'POST',
+                    body: JSON.stringify({
+                      key: 'Room' + pin,
+                      value: 2
+                    })
+                  }
+                )
+              })
+          } else {
+            let tutorial = document.getElementById('tutorial')
+            tutorial.innerHTML = ''
+            let text = document.createElement('p')
+            text = 'Invalid pin'
+            tutorial.append(text)
+
+            let ready = document.createElement('button')
+            ready.innerHTML = 'Reload page'
+            ready.classList.add('room')
+            ready.id = 'ready'
+            tutorial.append(ready)
+
+            document
+              .getElementById('ready')
+              .addEventListener('click', async function (e) {
+                window.location.href = 'multiplayer.html'
+              })
+          }
+
+          // let tutorial = document.getElementById('tutorial')
+          // tutorial.innerHTML = ''
+
+          // let text = document.createElement('p')
+          // text =
+          //   'Room pin: ' +
+          //   pin +
+          //   '. Get your friend to join with the room pin. ' +
+          //   name +
+          //   ' is a cool name! Waiting for another player...'
+          // tutorial.append(text)
+
+          await fetch(
+            'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+            {
+              method: 'POST',
+              body: JSON.stringify({
+                key: 'Room' + pin + ' host name',
+                value: name
+              })
+            }
+          )
+        })
+
+      await fetch(
+        'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+          pin
+      )
+        .then(res => res.text())
+        .then(value => {
+          roomAfree = Number(value)
+          console.log(roomAfree)
+        })
+
+      while (roomAfree < 2) {
+        await fetch(
+          'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+            pin
+        )
+          .then(res => res.text())
+          .then(value => {
+            roomAfree = Number(value)
+            console.log(roomAfree)
+          })
+      }
+      console.log('ready!')
+    })
+
+  await fetch(
+    'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=RoomA'
+  )
+    .then(res => res.text())
+    .then(value => {
+      roomAfree = Number(value)
+      console.log('Room A: ', value)
+    })
+
+  await fetch(
+    'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=RoomB'
+  )
+    .then(res => res.text())
+    .then(value => {
+      roomBfree = Number(value)
+      console.log('Room B: ', value)
+    })
+
+  if (roomAfree < 2) {
+    if (roomAfree == 1) {
+      roomAbutton.innerHTML = 'Room A: 1/2'
+    } else {
+      roomAbutton.innerHTML = 'Room A: 0/2'
+    }
+  } else {
+    roomAbutton.style.pointerEvents = 'none'
+    roomAbutton.style.backgroundColor = 'red'
+    roomAbutton.innerHTML = 'Room A: FULL'
+  }
+
+  if (roomBfree < 2) {
+    if (roomBfree == 1) {
+      roomBbutton.innerHTML = 'Room B: 1/2'
+    } else {
+      roomBbutton.innerHTML = 'Room B: 0/2'
+    }
+  } else {
+    roomBbutton.style.pointerEvents = 'none'
+    roomBbutton.style.backgroundColor = 'red'
+    roomBbutton.innerHTML = 'Room B: FULL'
+  }
+
+  // document
+  //   .getElementById('roomA')
+  //   .addEventListener('click', async function (e) {
+  //     await fetch(
+  //       'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+  //       {
+  //         method: 'POST',
+  //         body: JSON.stringify({
+  //           key: 'RoomA',
+  //           value: roomAfree + 1
+  //         })
+  //       }
+  //     )
+
+  //     roomLoadA()
+  //   })
+
+  // document
+  //   .getElementById('roomB')
+  //   .addEventListener('click', async function (e) {
+  //     await fetch(
+  //       'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+  //       {
+  //         method: 'POST',
+  //         body: JSON.stringify({
+  //           key: 'RoomB',
+  //           value: roomBfree + 1
+  //         })
+  //       }
+  //     )
+
+  //     roomLoadB()
+  //   })
+}
+
+async function roomLoad2 () {
+  let roomAbutton = document.getElementById('roomA')
+  let roomBbutton = document.getElementById('roomB')
+
+  let roomAfree = 0
+  let roomBfree = 0
+
+  await fetch(
+    'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=RoomA'
+  )
+    .then(res => res.text())
+    .then(value => {
+      roomAfree = Number(value)
+      console.log('Room A: ', value)
+    })
+
+  await fetch(
+    'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=RoomB'
+  )
+    .then(res => res.text())
+    .then(value => {
+      roomBfree = Number(value)
+      console.log('Room B: ', value)
+    })
+
+  if (roomAfree < 2) {
+    if (roomAfree == 1) {
+      roomAbutton.innerHTML = 'Room A: 1/2'
+    } else {
+      roomAbutton.innerHTML = 'Room A: 0/2'
+    }
+  } else {
+    roomAbutton.style.pointerEvents = 'none'
+    roomAbutton.style.backgroundColor = 'red'
+    roomAbutton.innerHTML = 'Room A: FULL'
+  }
+
+  if (roomBfree < 2) {
+    if (roomBfree == 1) {
+      roomBbutton.innerHTML = 'Room B: 1/2'
+    } else {
+      roomBbutton.innerHTML = 'Room B: 0/2'
+    }
+  } else {
+    roomBbutton.style.pointerEvents = 'none'
+    roomBbutton.style.backgroundColor = 'red'
+    roomBbutton.innerHTML = 'Room B: FULL'
+  }
+
+  document
+    .getElementById('roomA')
+    .addEventListener('click', async function (e) {
+      await fetch(
+        'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            key: 'RoomA',
+            value: roomAfree + 1
+          })
+        }
+      )
+
+      roomLoadA()
+    })
+
+  document
+    .getElementById('roomB')
+    .addEventListener('click', async function (e) {
+      await fetch(
+        'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            key: 'RoomB',
+            value: roomBfree + 1
+          })
+        }
+      )
+
+      roomLoadB()
+    })
+}
+
+async function getCloudWins () {
+  let mainTitle = document.getElementById('main-title')
   let mainText = document.createElement('p')
-  let global =
-    'Global win percentage: Loading...'
+  let global = 'Global win percentage: Loading...'
   mainText.innerHTML = global
   mainTitle.append(mainText)
-
 
   await fetch(
     'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Wins'
@@ -30,26 +479,27 @@ let mainTitle = document.getElementById('main-title')
       console.log('Cloud tries:', value)
     })
 
-//   let mainTitle = document.getElementById('main-title')
-//   let mainText = document.createElement('p')
+  //   let mainTitle = document.getElementById('main-title')
+  //   let mainText = document.createElement('p')
   global =
-    'Global win percentage: ' + Math.round((cloud_wins / cloud_tries) * 1000)/10 + '%'
+    'Global win percentage: ' +
+    Math.round((cloud_wins / cloud_tries) * 1000) / 10 +
+    '%'
   mainText.innerHTML = global
   mainTitle.append(mainText)
 
+  await fetch(
+    'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        key: 'Try ' + cloud_realTries + ' accessed',
+        value: new Date().toLocaleString()
+      })
+    }
+  )
 
-    await fetch(
-      'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          key: 'Try ' + cloud_realTries + ' accessed',
-          value: new Date().toLocaleString()
-        })
-      }
-    )
-
-    await fetch(
+  await fetch(
     'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Tries'
   )
     .then(res => res.text())
@@ -58,23 +508,22 @@ let mainTitle = document.getElementById('main-title')
       console.log('Real tries:', value)
     })
 
-    await fetch(
-      'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          key: 'RealTries',
-          value: cloud_realTries + 1
-        })
-      }
-    )
+  await fetch(
+    'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        key: 'RealTries',
+        value: cloud_realTries + 1
+      })
+    }
+  )
 }
 
-window.onload = function() {
-    getCloudWins();
-
-  
-};
+window.onload = function () {
+  // getCloudWins();
+  roomLoad()
+}
 
 let quotes = [
   'If you’re offered a seat on a rocket ship, don’t ask what seat! Just get on. Sheryl Sandberg',
@@ -604,17 +1053,17 @@ document.addEventListener('click', function (e) {
   console.log('Selected:', card.innerText)
 })
 
-document.getElementById('startButton').addEventListener('click', function (e) {
-  startGame()
-})
+// document.getElementById('startButton').addEventListener('click', function (e) {
+//   startGame()
+// })
 
-document.getElementById('startButton').addEventListener('touchend', function (e) {
-  startGame()
-})
+// document.getElementById('startButton').addEventListener('touchend', function (e) {
+//   startGame()
+// })
 
-document.getElementById('multiplayer').addEventListener('click', function (e) {
-  window.location.href = 'multiplayer.html'
-})
+// document.getElementById('multiplayer').addEventListener('click', function (e) {
+//   window.location.href = 'multiplayer.html'
+// })
 
 document.getElementById('melb').addEventListener('click', function (e) {
   window.location.href = 'index.html'
