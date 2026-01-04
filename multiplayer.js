@@ -203,7 +203,9 @@ async function roomLoad () {
             document
               .getElementById('ready')
               .addEventListener('click', async function (e) {
+                ready.innerHTML = 'Loading'
                 name = document.getElementById('inputBox')
+                console.log(name);
                 await fetch(
                   'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
                   {
@@ -214,6 +216,7 @@ async function roomLoad () {
                     })
                   }
                 )
+                console.log('name posted')
                 await fetch(
                   'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
                   {
@@ -224,6 +227,7 @@ async function roomLoad () {
                     })
                   }
                 )
+                console.log('room ready')
               })
           } else {
             let tutorial = document.getElementById('tutorial')
