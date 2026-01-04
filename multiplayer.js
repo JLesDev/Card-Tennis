@@ -204,7 +204,7 @@ async function roomLoad () {
               .getElementById('ready')
               .addEventListener('click', async function (e) {
                 ready.innerHTML = 'Loading'
-                name = document.getElementById('inputBox')
+                name = document.getElementById('inputBox').value
                 console.log(name);
                 await fetch(
                   'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
