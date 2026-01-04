@@ -211,7 +211,7 @@ async function roomLoad () {
                   {
                     method: 'POST',
                     body: JSON.stringify({
-                      key: 'Room' + pin + ' opponent name',
+                      key: 'Room' + connection_pin + ' opponent name',
                       value: name
                     })
                   }
@@ -222,7 +222,7 @@ async function roomLoad () {
                   {
                     method: 'POST',
                     body: JSON.stringify({
-                      key: 'Room' + pin,
+                      key: 'Room' + connection_pin,
                       value: 2
                     })
                   }
