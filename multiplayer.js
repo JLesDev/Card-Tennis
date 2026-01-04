@@ -191,7 +191,7 @@ async function roomLoad () {
             tutorial.append(text)
 
             let input = document.createElement('input')
-            input.id = 'inputBox'
+            input.id = 'inputBox2'
             tutorial.append(input)
 
             let ready = document.createElement('button')
@@ -204,7 +204,8 @@ async function roomLoad () {
               .getElementById('ready')
               .addEventListener('click', async function (e) {
                 ready.innerHTML = 'Loading'
-                name = document.getElementById('inputBox').value
+                
+                name = document.getElementById('inputBox2').value
                 console.log(name);
                 await fetch(
                   'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
