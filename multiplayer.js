@@ -277,7 +277,7 @@ async function roomLoad() {
                     })
                 }
 
-                startGameMultiplayerB(opp_name)
+                startGameMultiplayerB(opp_name, connection_pin)
               })
           }
           else {
@@ -481,7 +481,7 @@ async function startGameMultiplayer(opp_name, pin) {
   })
 }
 
-async function startGameMultiplayerB(opp_name) {
+async function startGameMultiplayerB(opp_name, pin) {
   let tutorial = document.getElementById('tutorial')
   tutorial.remove()
 
@@ -491,6 +491,63 @@ async function startGameMultiplayerB(opp_name) {
   actual.setAttribute('id', 'quote')
 
   parent2.appendChild(actual)
+
+
+  let cBox = document.createElement('div')
+  cBox.setAttribute('id', 'content2')
+  cBox.innerHTML = ''
+  active = [] // reset
+
+  let content = document.getElementById('content')
+  content.innerHTML = ''
+
+  let rutton = document.createElement('div')
+  rutton.setAttribute('id', 'rutton')
+  content.append(rutton)
+  content.append(cBox)
+  let buttonRow = document.getElementById('rutton')
+
+  let play = document.createElement('button')
+  play.innerText = 'Play'
+  play.setAttribute('id', 'play-card')
+  play.classList.add('play-btn')
+
+  let shuffle = document.createElement('button')
+  shuffle.innerText = 'Shuffle'
+  shuffle.setAttribute('id', 'shuffle')
+  shuffle.classList.add('play-btn')
+
+  let sell = document.createElement('button')
+  sell.innerText = 'Sell'
+  sell.setAttribute('id', 'sell')
+  sell.classList.add('play-btn')
+
+  pointTotal()
+  draw5(cBox)
+
+  buttonRow.append(play)
+  buttonRow.append(sell)
+  buttonRow.append(shuffle)
+
+  document.getElementById('play-card').addEventListener('click', function (e) {
+    if (active.length != 0) {
+      document.getElementById('play-card').style.visibility = 'hidden'
+      let user_val = active[active.length - 1].innerText.split(' ')
+      let card_val_user = card_val(user_val[0])
+      playCardMultiB(active[active.length - 1].innerText, pin)
+    }
+  })
+
+  document.getElementById('shuffle').addEventListener('click', function (e) {
+    document.getElementById('content2').innerHTML = ''
+    points = points - 5
+    pointTotal()
+    draw5(cBox)
+  })
+
+  document.getElementById('sell').addEventListener('click', function (e) {
+    sellCard(active[active.length - 1])
+  })
 }
 
 
@@ -1054,7 +1111,7 @@ async function playCardMultiA(card, pin) {
     card +
     '. Waiting for opponents move... '
 
-    content3.append(text);
+  content3.append(text);
 
   let user_val = card.split(' ')
   let card_val_user = card_val(user_val[0])
@@ -1113,6 +1170,105 @@ async function playCardMultiA(card, pin) {
         console.log(roomAfree)
       })
   }
+
+  let opp_move = 1;
+
+  await fetch(
+    'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+    pin + ' opponent move'
+  )
+    .then(res => res.text())
+    .then(value => {
+      opp_move = Number(value)
+      console.log(opp_move)
+    })
+
+}
+
+async function playCardMultiB(card, pin) {
+  let roomAfree = 5;
+
+  let content3 = document.getElementById('content')
+
+  content3.innerHTML = ''
+  let text = document.createElement('p')
+
+  text.innerText =
+    'You played the ' +
+    card +
+    '. Waiting for opponents move... '
+
+  content3.append(text);
+
+  let user_val = card.split(' ')
+  let card_val_user = card_val(user_val[0])
+  let text2 = document.createElement('p')
+
+  if (card == null) {
+    alert('Not a valid option...')
+  }
+
+  if (Number(card_val_user) > 19) {
+    points = points - 20
+  } else if (Number(card_val_user) > 10) {
+    points = points - 15
+  } else {
+    points = points - Number(card_val_user)
+  }
+
+  // if (points < 1) {
+  //   // win_game(0)
+  //   return
+  // }
+
+  content3.appendChild(text)
+
+  await fetch(
+    'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        key: 'Room' + pin,
+        value: 5
+      })
+    }
+  )
+
+
+  await fetch(
+    'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        key: 'Room' + pin + ' opponent move',
+        value: Number(card_val_user)
+      })
+    }
+  )
+
+  while (roomAfree == 5) {
+    await fetch(
+      'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+      pin
+    )
+      .then(res => res.text())
+      .then(value => {
+        roomAfree = Number(value)
+        console.log(roomAfree)
+      })
+  }
+
+  let opp_move = 1;
+
+  await fetch(
+    'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+    pin + ' host move'
+  )
+    .then(res => res.text())
+    .then(value => {
+      opp_move = Number(value)
+      console.log(opp_move)
+    })
 
 
 }
