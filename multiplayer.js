@@ -129,6 +129,9 @@ async function roomLoad() {
       tutorial.append(ready)
 
       document.getElementById('ready').addEventListener('click', async function (e) {
+        ready.innerHTML = 'LOADING'
+        ready.style.background = 'rgba(54, 79, 204, 1)'
+
         await fetch(
           'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
           {
@@ -256,6 +259,9 @@ async function roomLoad() {
                     })
                   }
                 )
+
+                roomAfree = 2
+
                 console.log('room ready')
 
                 while (roomAfree == 2) {
