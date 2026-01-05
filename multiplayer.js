@@ -1382,6 +1382,14 @@ async function playCardMultiB(card, pin) {
       return
     }
   }
+
+  let play_btn = document.createElement('button')
+  play_btn.innerText = 'Next round'
+  play_btn.classList.add('play-btn')
+  play_btn.setAttribute('id', 'next-round')
+
+  content3.appendChild(text2)
+  content3.appendChild(play_btn)
 }
 
 function playCard(card) {

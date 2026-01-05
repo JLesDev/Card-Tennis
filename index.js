@@ -660,5 +660,5 @@ function copyResults (did) {
   copied.style.visibility = 'visible'
   copied.innerHTML = 'Copy Results'
   document.getElementById('copyButton').innerHTML = 'Copied results!'
-  copied.style.color = 'rgba(134, 231, 171, 1)'
+  copied.style.color = '#1ebe9c'
 }
