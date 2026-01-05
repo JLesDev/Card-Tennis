@@ -1159,6 +1159,16 @@ async function playCardMultiA(card, pin) {
     }
   )
 
+  await fetch(
+    'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+    pin
+  )
+    .then(res => res.text())
+    .then(value => {
+      roomAfree = Number(value)
+      console.log(roomAfree)
+    })
+
   while (roomAfree == 4) {
     await fetch(
       'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
@@ -1182,6 +1192,24 @@ async function playCardMultiA(card, pin) {
       opp_move = Number(value)
       console.log(opp_move)
     })
+
+  let card_opp_string = card_val_opp(opp_move)
+
+  let content4 = document.getElementById('content')
+
+  content3.innerHTML = ''
+
+  let text3 = document.createElement('p')
+  text3.innerText =
+    'You played the ' +
+    card +
+    '. Your opponent played the ' +
+    card_opp_string +
+    ' of ' +
+    draw1(suit) +
+    's'
+
+  content3.appendChild(text3)
 
 }
 
@@ -1223,6 +1251,7 @@ async function playCardMultiB(card, pin) {
 
   content3.appendChild(text)
 
+
   await fetch(
     'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
     {
@@ -1245,6 +1274,16 @@ async function playCardMultiB(card, pin) {
       })
     }
   )
+
+  await fetch(
+    'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+    pin
+  )
+    .then(res => res.text())
+    .then(value => {
+      roomAfree = Number(value)
+      console.log(roomAfree)
+    })
 
   while (roomAfree == 5) {
     await fetch(
@@ -1271,6 +1310,23 @@ async function playCardMultiB(card, pin) {
     })
 
 
+  let card_opp_string = card_val_opp(opp_move)
+
+  let content4 = document.getElementById('content')
+
+  content3.innerHTML = ''
+
+  let text3 = document.createElement('p')
+  text3.innerText =
+    'You played the ' +
+    card +
+    '. Your opponent played the ' +
+    card_opp_string +
+    ' of ' +
+    draw1(suit) +
+    's'
+
+  content3.appendChild(text3)
 }
 
 function playCard(card) {
