@@ -408,12 +408,12 @@ async function roomLoad() {
 
 async function startGameMultiplayer() {
   let tutorial = document.getElementById('tutorial')
-  tutorial.innerHTML = ''
+  tutorial.remove()
 }
 
 async function startGameMultiplayerB() {
   let tutorial = document.getElementById('tutorial')
-  tutorial.innerHTML = ''
+  tutorial.remove()
 }
 
 
