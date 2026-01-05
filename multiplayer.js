@@ -972,8 +972,7 @@ function run_game() {
 }
 
 async function run() {
-  // randomQuote()
-  run_game()
+  // run_game()
 }
 
 function removeData(chart) {
