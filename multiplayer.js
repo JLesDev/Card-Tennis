@@ -972,7 +972,7 @@ function run_game() {
 }
 
 async function run() {
-  randomQuote()
+  // randomQuote()
   run_game()
 }
 
