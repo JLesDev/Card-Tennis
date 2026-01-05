@@ -261,7 +261,7 @@ async function roomLoad() {
                 while (roomAfree == 2) {
                   await fetch(
                     'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
-                    pin
+                    connection_pin
                   )
                     .then(res => res.text())
                     .then(value => {
