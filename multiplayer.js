@@ -1100,6 +1100,7 @@ function removeData(chart) {
 async function playCardMultiA(card, pin) {
   let roomAfree = 4;
 
+  let suit = Math.floor(Math.random() * 4)
 
   let content3 = document.getElementById('content')
 
@@ -1198,8 +1199,6 @@ async function playCardMultiA(card, pin) {
   let content4 = document.getElementById('content')
 
   content3.innerHTML = ''
-
-  let suit = Math.floor(Math.random() * 4)
 
   let text3 = document.createElement('p')
   text3.innerText =
@@ -1311,6 +1310,7 @@ async function playCardMultiB(card, pin) {
         console.log(roomAfree)
       })
   }
+
   // while (roomAfree == 5) {
   //   await fetch(
   //     'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
@@ -1355,6 +1355,33 @@ async function playCardMultiB(card, pin) {
     's'
 
   content3.appendChild(text3)
+
+  if (Number(card_val_user) > opp_move && points > -1) {
+    text2.innerText = 'You win!'
+    if (score == 0 || score == 15) {
+      score = score + 15
+    } else if (score == 30) {
+      score = score + 10
+    } else {
+      console.log('win')
+      win_game(1)
+      return
+    }
+  } else if (Number(card_val_user) == card_opp_numeric && points > -1) {
+    text2.innerText = 'Tie. Receive 5 points back.'
+    points = points + 5
+  } else {
+    text2.innerText = 'You lose!'
+    if (opp_score == 0 || opp_score == 15) {
+      opp_score = opp_score + 15
+    } else if (opp_score == 30) {
+      opp_score = opp_score + 10
+    } else {
+      console.log('lose')
+      win_game(0)
+      return
+    }
+  }
 }
 
 function playCard(card) {
