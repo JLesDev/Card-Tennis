@@ -57,6 +57,7 @@ async function roomLoad() {
       document
         .getElementById('ready')
         .addEventListener('click', async function (e) {
+
           name = document.getElementById('inputBox').value
 
           console.log(name)
@@ -125,10 +126,10 @@ async function roomLoad() {
 
       ready.innerHTML = 'Start match!'
       ready.classList.add('room')
-      ready.id = 'ready'
+      ready.id = 'ready5'
       tutorial.append(ready)
 
-      document.getElementById('ready').addEventListener('click', async function (e) {
+      document.getElementById('ready5').addEventListener('click', async function (e) {
         ready.innerHTML = 'LOADING'
         ready.style.background = 'rgba(54, 79, 204, 1)'
 
