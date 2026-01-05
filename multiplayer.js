@@ -1043,16 +1043,6 @@ function removeData(chart) {
 async function playCardMultiA(card, pin) {
   let roomAfree = 4;
 
-  await fetch(
-    'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
-    {
-      method: 'POST',
-      body: JSON.stringify({
-        key: 'Room' + pin,
-        value: 4
-      })
-    }
-  )
 
   let content3 = document.getElementById('content')
 
@@ -1088,6 +1078,18 @@ async function playCardMultiA(card, pin) {
   // }
 
   content3.appendChild(text)
+
+  await fetch(
+    'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        key: 'Room' + pin,
+        value: 4
+      })
+    }
+  )
+
 
   await fetch(
     'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
