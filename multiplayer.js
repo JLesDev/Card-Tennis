@@ -127,6 +127,20 @@ async function roomLoad() {
       ready.classList.add('room')
       ready.id = 'ready'
       tutorial.append(ready)
+
+      document.getElementById('ready').addEventListener('click', async function (e) {
+        await fetch(
+          'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+          {
+            method: 'POST',
+            body: JSON.stringify({
+              key: 'Room' + pin,
+              value: 3
+            })
+          }
+        )
+        startGameMultiplayer()
+      })
     })
 
   document
@@ -243,6 +257,20 @@ async function roomLoad() {
                   }
                 )
                 console.log('room ready')
+
+                while (roomAfree == 2) {
+                  await fetch(
+                    'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+                    pin
+                  )
+                    .then(res => res.text())
+                    .then(value => {
+                      roomAfree = Number(value)
+                      console.log(roomAfree)
+                    })
+                }
+
+                startGameMultiplayerB()
               })
           }
           else {
@@ -377,6 +405,17 @@ async function roomLoad() {
   //     roomLoadB()
   //   })
 }
+
+async function startGameMultiplayer() {
+  let tutorial = document.getElementById('tutorial')
+  tutorial.innerHTML = ''
+}
+
+async function startGameMultiplayerB() {
+  let tutorial = document.getElementById('tutorial')
+  tutorial.innerHTML = ''
+}
+
 
 async function roomLoad2() {
   let roomAbutton = document.getElementById('roomA')
