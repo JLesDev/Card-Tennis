@@ -1063,13 +1063,34 @@ async function playCardMultiA(card, pin) {
     card +
     '. Waiting for opponents move... '
 
+  let user_val = card.split(' ')
+  let card_val_user = card_val(user_val[0])
+  let text2 = document.createElement('p')
+
+  if (card == null) {
+    alert('Not a valid option...')
+  }
+
+  if (Number(card_val_user) > 19) {
+    points = points - 20
+  } else if (Number(card_val_user) > 10) {
+    points = points - 15
+  } else {
+    points = points - Number(card_val_user)
+  }
+
+  if (points < 1) {
+    // win_game(0)
+    return
+  }
+
   await fetch(
     'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
     {
       method: 'POST',
       body: JSON.stringify({
         key: 'Room' + pin + ' host move',
-        value: 
+        value: Number(card_val_user)
       })
     }
   )
