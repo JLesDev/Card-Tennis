@@ -44,7 +44,7 @@ async function roomLoad() {
       tutorial.append(text)
 
       let input = document.createElement('input')
-      input.id = 'inputBox'
+      input.id = 'inputBox3'
       // input.innerHTML = 'Name'
       tutorial.append(input)
 
@@ -58,7 +58,7 @@ async function roomLoad() {
         .getElementById('ready')
         .addEventListener('click', async function (e) {
 
-          name = document.getElementById('inputBox').value
+          name = document.getElementById('inputBox3').value
 
           console.log(name)
 
@@ -157,7 +157,7 @@ async function roomLoad() {
       tutorial.append(text)
 
       let input = document.createElement('input')
-      input.id = 'inputBox'
+      input.id = 'inputBox2'
       // input.innerHTML = 'Name'
       tutorial.append(input)
 
@@ -175,7 +175,7 @@ async function roomLoad() {
           ready.innerHTML = 'LOADING'
           ready.style.background = 'rgba(54, 79, 204, 1)'
 
-          connection_pin = document.getElementById('inputBox').value
+          connection_pin = document.getElementById('inputBox2').value
 
           console.log(connection_pin)
 
@@ -217,11 +217,11 @@ async function roomLoad() {
             let ready = document.createElement('button')
             ready.innerHTML = 'Ready up!'
             ready.classList.add('room')
-            ready.id = 'ready'
+            ready.id = 'ready6'
             tutorial.append(ready)
 
             document
-              .getElementById('ready')
+              .getElementById('ready6')
               .addEventListener('click', async function (e) {
 
                 name = document.getElementById('inputBox2').value
@@ -290,11 +290,11 @@ async function roomLoad() {
             let ready = document.createElement('button')
             ready.innerHTML = 'Reload page'
             ready.classList.add('room')
-            ready.id = 'ready'
+            ready.id = 'ready7'
             tutorial.append(ready)
 
             document
-              .getElementById('ready')
+              .getElementById('ready7')
               .addEventListener('click', async function (e) {
                 window.location.href = 'multiplayer.html'
               })
@@ -1064,6 +1064,8 @@ async function playCardMultiA(card, pin) {
     card +
     '. Waiting for opponents move... '
 
+    content3.append(text);
+
   let user_val = card.split(' ')
   let card_val_user = card_val(user_val[0])
   let text2 = document.createElement('p')
@@ -1080,10 +1082,12 @@ async function playCardMultiA(card, pin) {
     points = points - Number(card_val_user)
   }
 
-  if (points < 1) {
-    // win_game(0)
-    return
-  }
+  // if (points < 1) {
+  //   // win_game(0)
+  //   return
+  // }
+
+  content3.appendChild(text)
 
   await fetch(
     'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
