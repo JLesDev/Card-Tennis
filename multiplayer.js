@@ -1199,6 +1199,8 @@ async function playCardMultiA(card, pin) {
 
   content3.innerHTML = ''
 
+  let suit = Math.floor(Math.random() * 4)
+
   let text3 = document.createElement('p')
   text3.innerText =
     'You played the ' +
@@ -1285,19 +1287,43 @@ async function playCardMultiB(card, pin) {
       console.log(roomAfree)
     })
 
-  while (roomAfree == 5) {
+  let opp_move = 1;
+
+  await fetch(
+    'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+    pin + ' host move'
+  )
+    .then(res => res.text())
+    .then(value => {
+      opp_move = Number(value)
+      console.log(roomAfree)
+    })
+
+
+  while (opp_move < 2) {
     await fetch(
       'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
-      pin
+      pin + ' host move'
     )
       .then(res => res.text())
       .then(value => {
-        roomAfree = Number(value)
+        opp_move = Number(value)
         console.log(roomAfree)
       })
   }
+  // while (roomAfree == 5) {
+  //   await fetch(
+  //     'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+  //     pin
+  //   )
+  //     .then(res => res.text())
+  //     .then(value => {
+  //       roomAfree = Number(value)
+  //       console.log(roomAfree)
+  //     })
+  // }
 
-  let opp_move = 1;
+
 
   await fetch(
     'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
@@ -1315,6 +1341,8 @@ async function playCardMultiB(card, pin) {
   let content4 = document.getElementById('content')
 
   content3.innerHTML = ''
+
+  let suit = Math.floor(Math.random() * 4)
 
   let text3 = document.createElement('p')
   text3.innerText =
