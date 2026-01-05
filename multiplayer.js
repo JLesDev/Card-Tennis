@@ -142,7 +142,7 @@ async function roomLoad() {
             })
           }
         )
-        startGameMultiplayer()
+        startGameMultiplayer(opp_name)
       })
     })
 
@@ -276,7 +276,7 @@ async function roomLoad() {
                     })
                 }
 
-                startGameMultiplayerB()
+                startGameMultiplayerB(opp_name)
               })
           }
           else {
@@ -412,14 +412,28 @@ async function roomLoad() {
   //   })
 }
 
-async function startGameMultiplayer() {
+async function startGameMultiplayer(opp_name) {
   let tutorial = document.getElementById('tutorial')
   tutorial.remove()
+
+  let parent2 = document.getElementById('bot-box')
+  let actual = document.createElement('p')
+  actual.textContent = opp_name + "'s cash: $60"
+  actual.setAttribute('id', 'quote')
+
+  parent2.appendChild(actual)
 }
 
-async function startGameMultiplayerB() {
+async function startGameMultiplayerB(opp_name) {
   let tutorial = document.getElementById('tutorial')
   tutorial.remove()
+
+  let parent2 = document.getElementById('bot-box')
+  let actual = document.createElement('p')
+  actual.textContent = opp_name + "'s cash: $60"
+  actual.setAttribute('id', 'quote')
+
+  parent2.appendChild(actual)
 }
 
 
@@ -629,14 +643,14 @@ let quotes = [
   'If you can dream it, you can achieve it. Zig Ziglar'
 ]
 
-function randomQuote() {
-  let parent2 = document.getElementById('bot-box')
-  let randomInt = Math.floor(Math.random() * 47)
-  let actual = document.createElement('p')
-  actual.textContent = quotes[randomInt]
-  actual.setAttribute('id', 'quote')
-  parent2.appendChild(actual)
-}
+// function randomQuote() {
+//   let parent2 = document.getElementById('bot-box')
+//   let randomInt = Math.floor(Math.random() * 47)
+//   let actual = document.createElement('p')
+//   actual.textContent = quotes[randomInt]
+//   actual.setAttribute('id', 'quote')
+//   parent2.appendChild(actual)
+// }
 
 function startGame() {
   let tut = document.getElementById('tutorial')
