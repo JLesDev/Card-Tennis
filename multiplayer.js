@@ -142,7 +142,7 @@ async function roomLoad() {
             })
           }
         )
-        startGameMultiplayer(opp_name)
+        startGameMultiplayer(opp_name, pin)
       })
     })
 
@@ -412,7 +412,7 @@ async function roomLoad() {
   //   })
 }
 
-async function startGameMultiplayer(opp_name) {
+async function startGameMultiplayer(opp_name, pin) {
   let tutorial = document.getElementById('tutorial')
   tutorial.remove()
 
@@ -422,6 +422,62 @@ async function startGameMultiplayer(opp_name) {
   actual.setAttribute('id', 'quote')
 
   parent2.appendChild(actual)
+
+  let cBox = document.createElement('div')
+  cBox.setAttribute('id', 'content2')
+  cBox.innerHTML = ''
+  active = [] // reset
+
+  let content = document.getElementById('content')
+  content.innerHTML = ''
+
+  let rutton = document.createElement('div')
+  rutton.setAttribute('id', 'rutton')
+  content.append(rutton)
+  content.append(cBox)
+  let buttonRow = document.getElementById('rutton')
+
+  let play = document.createElement('button')
+  play.innerText = 'Play'
+  play.setAttribute('id', 'play-card')
+  play.classList.add('play-btn')
+
+  let shuffle = document.createElement('button')
+  shuffle.innerText = 'Shuffle'
+  shuffle.setAttribute('id', 'shuffle')
+  shuffle.classList.add('play-btn')
+
+  let sell = document.createElement('button')
+  sell.innerText = 'Sell'
+  sell.setAttribute('id', 'sell')
+  sell.classList.add('play-btn')
+
+  pointTotal()
+  draw5(cBox)
+
+  buttonRow.append(play)
+  buttonRow.append(sell)
+  buttonRow.append(shuffle)
+
+  document.getElementById('play-card').addEventListener('click', function (e) {
+    if (active.length != 0) {
+      document.getElementById('play-card').style.visibility = 'hidden'
+      let user_val = active[active.length - 1].innerText.split(' ')
+      let card_val_user = card_val(user_val[0])
+      playCardMultiA(active[active.length - 1].innerText, pin)
+    }
+  })
+
+  document.getElementById('shuffle').addEventListener('click', function (e) {
+    document.getElementById('content2').innerHTML = ''
+    points = points - 5
+    pointTotal()
+    draw5(cBox)
+  })
+
+  document.getElementById('sell').addEventListener('click', function (e) {
+    sellCard(active[active.length - 1])
+  })
 }
 
 async function startGameMultiplayerB(opp_name) {
@@ -983,6 +1039,56 @@ function removeData(chart) {
   chart.update()
 }
 
+async function playCardMultiA(card, pin) {
+  let roomAfree = 4;
+
+  await fetch(
+    'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        key: 'Room' + pin,
+        value: 4
+      })
+    }
+  )
+
+  let content3 = document.getElementById('content')
+
+  content3.innerHTML = ''
+  let text = document.createElement('p')
+
+  text.innerText =
+    'You played the ' +
+    card +
+    '. Waiting for opponents move... '
+
+  await fetch(
+    'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        key: 'Room' + pin + ' host move',
+        value: 
+      })
+    }
+  )
+
+  while (roomAfree == 4) {
+    await fetch(
+      'https://script.google.com/macros/s/AKfycbzX0DmUX_b5BTwMkrV3BleUkUHqtIECeiaNXq46Orn5wUmZnPNqkUTaAs2qo8VfJs6eoA/exec?key=Room' +
+      pin
+    )
+      .then(res => res.text())
+      .then(value => {
+        roomAfree = Number(value)
+        console.log(roomAfree)
+      })
+  }
+
+
+}
+
 function playCard(card) {
   let suit = Math.floor(Math.random() * 4)
 
@@ -1009,9 +1115,6 @@ function playCard(card) {
   if (card == null) {
     alert('Not a valid option...')
   }
-
-  console.log(Number(card_val_user))
-  console.log(card_opp_numeric)
 
   if (Number(card_val_user) > 19) {
     points = points - 20
